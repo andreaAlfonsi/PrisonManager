@@ -1,4 +1,4 @@
-package controller;
+package controller.Implementations;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,14 +10,16 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.Interfaces.LoginController;
 import model.Interfaces.Guard;
 import view.Interfaces.LoginView;
+import view.Interfaces.MainView;
 
-public class LoginController implements Controller{
+public class LoginControllerImpl implements LoginController{
 	
 	LoginView loginView;
 
-	public LoginController(LoginView loginView){
+	public LoginControllerImpl(LoginView loginView){
 		this.loginView=loginView;
 		loginView.addLoginListener(new LoginListener());
 	}
@@ -41,7 +43,9 @@ public class LoginController implements Controller{
 			for (Guard g : guards){		
 				if(loginView.getUsername().equals(String.valueOf(g.getUsername())) && loginView.getPassword().equals(g.getPassword())){
 					isInside=true;
-					loginView.displayErrorMessage("benvenuto utente "+ loginView.getUsername());					
+					loginView.displayErrorMessage("benvenuto utente "+ loginView.getUsername());	
+					loginView.dispose();
+					new MainView();
 				}
 			}
 			if(isInside==false){
@@ -72,5 +76,4 @@ public class LoginController implements Controller{
 		
 		return guards;
 	}
-	//prova
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import controller.LoginController;
+import controller.Implementations.LoginControllerImpl;
 import model.Implementations.GuardImpl;
 import model.Interfaces.Guard;
 import view.Interfaces.LoginView;
@@ -52,7 +52,7 @@ public final class Main {
 				oo.writeObject(gua);
 			}
 			oo.close();
-			 new LoginController(new LoginView());
+			 new LoginControllerImpl(new LoginView());
 
 	 }
 	 

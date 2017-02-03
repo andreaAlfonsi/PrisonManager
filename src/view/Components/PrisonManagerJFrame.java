@@ -16,6 +16,7 @@ public class PrisonManagerJFrame extends JFrame{
 	
 	public PrisonManagerJFrame(){
 		this.setIconImage(img.getImage());
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 
 }

@@ -8,7 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import controller.LoginController.LoginListener;
+
+import controller.Implementations.LoginControllerImpl.LoginListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 
@@ -29,7 +30,6 @@ public class LoginView extends PrisonManagerJFrame{
 	
 	public LoginView(){
 		this.setSize(400, 100);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.getContentPane().setLayout(new BorderLayout());
 		south = new PrisonManagerJPanel(new FlowLayout());
 		south.add(login);

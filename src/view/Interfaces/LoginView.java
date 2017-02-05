@@ -27,9 +27,11 @@ public class LoginView extends PrisonManagerJFrame{
 	final JTextField username1 = new JTextField(8);
 	final JLabel password = new JLabel("Password");
 	final JPasswordField password1 = new JPasswordField(8);
+	final PrisonManagerJPanel north;
+	final JLabel title = new JLabel("Prison Manager");
 	
 	public LoginView(){
-		this.setSize(400, 100);
+		this.setSize(400, 130);
 		this.getContentPane().setLayout(new BorderLayout());
 		south = new PrisonManagerJPanel(new FlowLayout());
 		south.add(login);
@@ -40,6 +42,9 @@ public class LoginView extends PrisonManagerJFrame{
 		center.add(password);
 		center.add(password1);
 		this.getContentPane().add(BorderLayout.CENTER,center);
+		north = new PrisonManagerJPanel(new FlowLayout());
+		north.add(title);
+		this.getContentPane().add(BorderLayout.NORTH,north);
 		this.setVisible(true);
 	}
 	

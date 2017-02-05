@@ -14,6 +14,8 @@ import model.Interfaces.Prisoner;
 import view.Interfaces.InsertPrisonerView;
 import view.Interfaces.LoginView;
 import view.Interfaces.MainView;
+import view.Interfaces.PrisonerProfileView;
+import view.Interfaces.RemovePrisonerView;
 
 public class MainControllerImpl {
 
@@ -22,6 +24,8 @@ public class MainControllerImpl {
 		this.mainView=mainView;
 		mainView.addLogoutListener(new LogoutListener());
 		mainView.addInsertPrisonerListener(new InsertPrisonerListener());
+		mainView.addRemovePrisonerListener(new RemovePrisonerListener());
+		mainView.addViewPrisonerListener(new ViewPrisonerListener());
 	}
 		
 	public class LogoutListener implements ActionListener{
@@ -42,24 +46,47 @@ public class MainControllerImpl {
 			new InsertPrisonerControllerImpl(new InsertPrisonerView());
 		}
 	}
-	public class removePrisonerListener implements ActionListener{
+	
+	public class RemovePrisonerListener implements ActionListener{
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			 
+			 mainView.dispose();
+			 new RemovePrisonerControllerImpl(new RemovePrisonerView());
 		}
 	}
 	
-	public class viewPrisonerListener implements ActionListener{
+	public class ViewPrisonerListener implements ActionListener{
 		
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			 
+			 mainView.dispose();
+			 new ViewPrisonerControllerImpl(new PrisonerProfileView());
 		}
 	}
 	
 	public static List<Prisoner> getPrisoners() throws IOException, ClassNotFoundException{
 		File f = new File("res/Prisoners.txt");
+		List<Prisoner> prisoners = new ArrayList<>();
+		if(f.length()!=0){
+		FileInputStream fi = new FileInputStream(f);
+		ObjectInputStream oi = new ObjectInputStream(fi);
+		
+		
+		try{
+			while(true){
+				Prisoner s = (Prisoner) oi.readObject();
+				prisoners.add(s);
+			}
+		}catch(EOFException eofe){}
+		
+		fi.close();
+		oi.close();
+		}
+		return prisoners;
+	}
+	public static List<Prisoner> getCurrentPrisoners() throws IOException, ClassNotFoundException{
+		File f = new File("res/CurrentPrisoners.txt");
 		List<Prisoner> prisoners = new ArrayList<>();
 		if(f.length()!=0){
 		FileInputStream fi = new FileInputStream(f);

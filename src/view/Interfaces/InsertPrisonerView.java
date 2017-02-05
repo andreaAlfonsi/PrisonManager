@@ -10,11 +10,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 import controller.Implementations.InsertPrisonerControllerImpl.InsertPrisonerListener;
 import controller.Implementations.InsertPrisonerControllerImpl.BackListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
+import view.Components.SpringUtilities;
 
 public class InsertPrisonerView extends PrisonManagerJFrame{
 
@@ -27,7 +29,7 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	final JButton insert = new JButton("Insert");
 	final PrisonManagerJPanel north;
 	final JLabel prisonerID = new JLabel("Prisoner ID");
-	final JTextField prisonerID1 = new JTextField(2);
+	final JTextField prisonerID1 = new JTextField(6);
 	final JLabel name = new JLabel("Name");
 	final JTextField name1 = new JTextField(6);
 	final JLabel surname = new JLabel("Surname");
@@ -40,33 +42,39 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	final JLabel end = new JLabel("End of imprisonment");
 	final JTextField end1 = new JTextField(8);
 	final JButton back = new JButton("Back");
+	final JLabel title = new JLabel("Insert a prisoner");
 	String pattern = "MM/dd/yyyy";
     SimpleDateFormat format = new SimpleDateFormat(pattern);
     Date date;
 	
 	public InsertPrisonerView(){
-		this.setSize(500, 130);
+		this.setSize(450, 300);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
-		north.add(prisonerID);
-		north.add(prisonerID1);
-		north.add(name);
-		north.add(name1);
-		north.add(surname);
-		north.add(surname1);	
+		north.add(title);
 		this.getContentPane().add(BorderLayout.NORTH,north);
-		center = new PrisonManagerJPanel(new FlowLayout());
-		north.add(birthDate);
-		north.add(birthDate1);
+		center = new PrisonManagerJPanel(new SpringLayout());
+		center.add(prisonerID);
+		center.add(prisonerID1);
+		center.add(name);
+		center.add(name1);
+		center.add(surname);
+		center.add(surname1);	
+		center.add(birthDate);
+		center.add(birthDate1);
 		center.add(start);
 		center.add(start1);
 		center.add(end);
 		center.add(end1);
+		SpringUtilities.makeCompactGrid(center,
+                6, 2, //rows, cols
+                6, 6,        //initX, initY
+                6, 6);       //xPad, yPad
+		this.getContentPane().add(BorderLayout.CENTER,center);
 		south = new PrisonManagerJPanel(new FlowLayout());
 		south.add(insert);
 		south.add(back);
 		this.getContentPane().add(BorderLayout.SOUTH,south);
-		this.getContentPane().add(BorderLayout.CENTER,center);
 		this.setVisible(true);
 	}
 	

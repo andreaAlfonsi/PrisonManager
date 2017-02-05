@@ -43,7 +43,7 @@ public class LoginControllerImpl implements LoginController{
 			for (Guard g : guards){		
 				if(loginView.getUsername().equals(String.valueOf(g.getUsername())) && loginView.getPassword().equals(g.getPassword())){
 					isInside=true;
-					loginView.displayErrorMessage("benvenuto utente "+ loginView.getUsername());	
+					loginView.displayErrorMessage("Benvenuto Utente "+ loginView.getUsername());	
 					loginView.dispose();
 					new MainControllerImpl(new MainView());
 				}

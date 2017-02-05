@@ -5,6 +5,8 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 
+import controller.Implementations.MainControllerImpl.InsertPrisonerListener;
+import controller.Implementations.MainControllerImpl.LogoutListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 
@@ -25,20 +27,26 @@ public class MainView extends PrisonManagerJFrame{
 	final JButton logout=new JButton("Logout");
 	
 	public MainView(){
-		this.setSize(400, 400);
+		this.setSize(400, 150);
 		this.getContentPane().setLayout(new BorderLayout());
 		left = new PrisonManagerJPanel(new FlowLayout());
 		left.add(addPrisoner);
 		left.add(removePrisoner);
 		left.add(viewPrisoner);
-		this.getContentPane().add(BorderLayout.WEST,left);
+		this.getContentPane().add(BorderLayout.PAGE_START,left);
 		right=new PrisonManagerJPanel(new FlowLayout());
 		right.add(highRankOnly);
 		right.add(moreFunctions);
 		right.add(logout);
-		this.getContentPane().add(BorderLayout.EAST,right);
+		this.getContentPane().add(BorderLayout.CENTER,right);
 		this.setVisible(true);
 	}
 	
+	public void addLogoutListener(LogoutListener logoutListener){
+		logout.addActionListener(logoutListener);
+	}
 	
+	public void addInsertPrisonerListener(InsertPrisonerListener insertPrisonerListener){
+		addPrisoner.addActionListener(insertPrisonerListener);
+	}
 }

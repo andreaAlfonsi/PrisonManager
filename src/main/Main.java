@@ -27,7 +27,7 @@ public final class Main {
 	 * @throws IOException 
      */
 	 public static void main(final String... args) throws IOException {
-		 File f = new File("res/GuardieUserPass.txt");
+		 	File f = new File("res/GuardieUserPass.txt");
 			FileOutputStream fo = new FileOutputStream(f);
 			ObjectOutputStream oo = new ObjectOutputStream(fo);
 			String pattern = "MM/dd/yyyy";

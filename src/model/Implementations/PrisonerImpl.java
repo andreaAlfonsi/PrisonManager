@@ -73,4 +73,10 @@ public class PrisonerImpl extends PersonImpl implements Prisoner{
 		this.fine = fine;
 	}
 
+	@Override
+	public String toString() {
+		return "PrisonerImpl [idPrigioniero=" + idPrigioniero + ", inizio=" + inizio + ", fine=" + fine + ", crimini="
+				+ crimini + "]";
+	}
+
 }

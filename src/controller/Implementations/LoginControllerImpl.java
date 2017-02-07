@@ -45,7 +45,7 @@ public class LoginControllerImpl implements LoginController{
 					isInside=true;
 					loginView.displayErrorMessage("Benvenuto Utente "+ loginView.getUsername());	
 					loginView.dispose();
-					new MainControllerImpl(new MainView());
+					new MainControllerImpl(new MainView(g.getRank()));
 				}
 			}
 			if(isInside==false){

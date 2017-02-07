@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 import controller.Implementations.MainControllerImpl.InsertPrisonerListener;
 import controller.Implementations.MainControllerImpl.LogoutListener;
+import controller.Implementations.MainControllerImpl.MoreFunctionsListener;
 import controller.Implementations.MainControllerImpl.RemovePrisonerListener;
 import controller.Implementations.MainControllerImpl.ViewPrisonerListener;
 import view.Components.PrisonManagerJFrame;
@@ -30,8 +31,10 @@ public class MainView extends PrisonManagerJFrame{
 	final JButton logout=new JButton("Logout");
 	final PrisonManagerJPanel north;
 	final JLabel title=new JLabel("Prison Manager");
+	private int rank;
 	
-	public MainView(){
+	public MainView(int rank){
+		this.rank=rank;
 		this.setSize(450, 150);
 		this.getContentPane().setLayout(new BorderLayout());
 		center = new PrisonManagerJPanel(new FlowLayout());
@@ -43,6 +46,9 @@ public class MainView extends PrisonManagerJFrame{
 		south.add(highRankOnly);
 		south.add(moreFunctions);
 		south.add(logout);
+		if(rank==1){
+			moreFunctions.setEnabled(false);
+		}
 		this.getContentPane().add(BorderLayout.SOUTH,south);
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);
@@ -64,5 +70,13 @@ public class MainView extends PrisonManagerJFrame{
 	
 	public void addViewPrisonerListener(ViewPrisonerListener viewPrisonerListener){
 		viewPrisoner.addActionListener(viewPrisonerListener);
+	}
+	
+	public void addMoreFunctionsListener(MoreFunctionsListener moreFListener){
+		moreFunctions.addActionListener(moreFListener);
+	}
+	
+	public int getRank(){
+		return this.rank;
 	}
 }

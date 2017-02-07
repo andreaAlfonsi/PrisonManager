@@ -39,9 +39,10 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 	final JLabel end;
 	final JLabel end1;
 	final PrisonManagerJPanel center;
+	private int rank;
 	
-	public PrisonerProfileView(){
-		
+	public PrisonerProfileView(int rank){
+		this.rank=rank;
 		this.getContentPane().setLayout(new BorderLayout());
 		center = new PrisonManagerJPanel(new SpringLayout());
 		name = new JLabel("Name:		");
@@ -103,6 +104,10 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 	
 	public void displayErrorMessage(String error){
 		JOptionPane.showMessageDialog(this, error);
+	}
+	
+	public int getRank(){
+		return this.rank;
 	}
 
 }

@@ -84,7 +84,7 @@ public class RemovePrisonerControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			removePrisonerView.dispose();
-			new MainControllerImpl(new MainView());
+			new MainControllerImpl(new MainView(removePrisonerView.getRank()));
 		}
 		
 	}

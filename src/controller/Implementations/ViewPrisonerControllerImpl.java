@@ -56,7 +56,7 @@ public class ViewPrisonerControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			viewPrisonerView.dispose();
-			new MainControllerImpl(new MainView());
+			new MainControllerImpl(new MainView(viewPrisonerView.getRank()));
 		}
 		
 	}

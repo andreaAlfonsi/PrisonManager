@@ -44,7 +44,7 @@ public final class Main {
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
-			Guard g2 = new GuardImpl("giuseppe", "mascara", date, 3,"234324",2,"asdasd");
+			Guard g2 = new GuardImpl("giuseppe", "mascara", date, 2,"234324",2,"asdasd");
 			List<Guard> listGuardie = new ArrayList<>();
 			listGuardie.add(g1);
 			listGuardie.add(g2);

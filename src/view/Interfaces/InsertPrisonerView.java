@@ -46,8 +46,10 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	String pattern = "MM/dd/yyyy";
     SimpleDateFormat format = new SimpleDateFormat(pattern);
     Date date;
+    private int rank;
 	
-	public InsertPrisonerView(){
+	public InsertPrisonerView(int rank){
+		this.rank=rank;
 		this.setSize(450, 300);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
@@ -127,6 +129,10 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	
 	public void displayErrorMessage(String error){
 		JOptionPane.showMessageDialog(this, error);
+	}
+	
+	public int getRank(){
+		return this.rank;
 	}
 	
 }

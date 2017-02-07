@@ -24,6 +24,7 @@ public class InsertPrisonerControllerImpl {
 		InsertPrisonerControllerImpl.insertPrisonerView=insertPrisonerView;
 		insertPrisonerView.addInsertPrisonerListener(new InsertPrisonerListener());
 		insertPrisonerView.addBackListener(new BackListener());
+		
 	}
 	
 	public class InsertPrisonerListener implements ActionListener{
@@ -116,7 +117,7 @@ public class InsertPrisonerControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			insertPrisonerView.dispose();
-			new MainControllerImpl(new MainView());
+			new MainControllerImpl(new MainView(insertPrisonerView.getRank()));
 		}
 		
 	}

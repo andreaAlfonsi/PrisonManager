@@ -26,8 +26,10 @@ public class RemovePrisonerView extends PrisonManagerJFrame{
 	final PrisonManagerJPanel north;
 	final JLabel prisonerID = new JLabel("Prisoner ID");
 	final JTextField prisonerID1 = new JTextField(2);
+	private int rank;
 	
-	public RemovePrisonerView(){
+	public RemovePrisonerView(int rank){
+		this.rank=rank;
 		this.setSize(450, 300);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
@@ -55,5 +57,9 @@ public class RemovePrisonerView extends PrisonManagerJFrame{
 	
 	public void displayErrorMessage(String error){
 		JOptionPane.showMessageDialog(this, error);
+	}
+	
+	public int getRank(){
+		return this.rank;
 	}
 }

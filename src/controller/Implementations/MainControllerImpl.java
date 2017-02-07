@@ -14,6 +14,7 @@ import model.Interfaces.Prisoner;
 import view.Interfaces.InsertPrisonerView;
 import view.Interfaces.LoginView;
 import view.Interfaces.MainView;
+import view.Interfaces.MoreFunctionsView;
 import view.Interfaces.PrisonerProfileView;
 import view.Interfaces.RemovePrisonerView;
 
@@ -26,6 +27,7 @@ public class MainControllerImpl {
 		mainView.addInsertPrisonerListener(new InsertPrisonerListener());
 		mainView.addRemovePrisonerListener(new RemovePrisonerListener());
 		mainView.addViewPrisonerListener(new ViewPrisonerListener());
+		mainView.addMoreFunctionsListener(new MoreFunctionsListener());
 	}
 		
 	public class LogoutListener implements ActionListener{
@@ -43,7 +45,7 @@ public class MainControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			mainView.dispose();
-			new InsertPrisonerControllerImpl(new InsertPrisonerView());
+			new InsertPrisonerControllerImpl(new InsertPrisonerView(mainView.getRank()));
 		}
 	}
 	
@@ -52,7 +54,7 @@ public class MainControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			 mainView.dispose();
-			 new RemovePrisonerControllerImpl(new RemovePrisonerView());
+			 new RemovePrisonerControllerImpl(new RemovePrisonerView(mainView.getRank()));
 		}
 	}
 	
@@ -61,7 +63,7 @@ public class MainControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			 mainView.dispose();
-			 new ViewPrisonerControllerImpl(new PrisonerProfileView());
+			 new ViewPrisonerControllerImpl(new PrisonerProfileView(mainView.getRank()));
 		}
 	}
 	
@@ -104,6 +106,15 @@ public class MainControllerImpl {
 		oi.close();
 		}
 		return prisoners;
+	}
+	
+	public class MoreFunctionsListener implements ActionListener{
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			 mainView.dispose();
+			 new MoreFunctionsControllerImpl(new MoreFunctionsView(mainView.getRank()));
+		}
 	}
 
 }

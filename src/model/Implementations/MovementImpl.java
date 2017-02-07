@@ -1,12 +1,18 @@
 package model.Implementations;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import model.Interfaces.Movement;
 
-public class MovementImpl implements Movement {
+public class MovementImpl implements Serializable, Movement {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8676396152502823263L;
+	
 	private String descr;
 	private double amount;
 	private SimpleDateFormat data;

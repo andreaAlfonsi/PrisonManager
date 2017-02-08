@@ -2,10 +2,12 @@ package view.Interfaces;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -39,6 +41,8 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 	final JLabel end;
 	final JLabel end1;
 	final PrisonManagerJPanel center;
+	final PrisonManagerJPanel east;
+	final JTextArea textArea;
 	private int rank;
 	
 	public PrisonerProfileView(int rank){
@@ -74,11 +78,16 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 		north.add(prisonerID);
 		north.add(prisonerID1);
 		this.getContentPane().add(BorderLayout.NORTH,north);
+		east = new PrisonManagerJPanel(new FlowLayout());
+		textArea = new JTextArea();
+	    textArea.setEditable(false);
+		east.add(textArea);
+		this.getContentPane().add(BorderLayout.EAST, east);
 		south = new PrisonManagerJPanel(new FlowLayout());
 		south.add(view);
 		south.add(back);
 		this.getContentPane().add(BorderLayout.SOUTH,south);
-		this.setSize(450, 300);
+		this.setSize(500, 300);
 		this.setVisible(true);
 	}
 	
@@ -110,4 +119,10 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 		return this.rank;
 	}
 
+	public void setTextArea(List<String>list){
+		textArea.setText("");
+		for(String s : list){
+			textArea.append(s + "\n");
+		}
+	}
 }

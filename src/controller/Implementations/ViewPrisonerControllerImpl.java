@@ -41,6 +41,7 @@ public class ViewPrisonerControllerImpl {
 			 for(Prisoner p : prisoners){
 				 if(p.getIdPrigioniero()==viewPrisonerView.getID()){
 					 viewPrisonerView.setProfile(p.getName(), p.getSurname(), p.getBirthDate().toString(), p.getInizio().toString(), p.getFine().toString());
+					 viewPrisonerView.setTextArea(p.getCrimini());
 					 found=true;
 				 }
 			 }

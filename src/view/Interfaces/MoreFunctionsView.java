@@ -10,6 +10,8 @@ import javax.swing.SpringLayout;
 import controller.Implementations.MoreFunctionsControllerImpl.AddMovementListener;
 import controller.Implementations.MoreFunctionsControllerImpl.BackListener;
 import controller.Implementations.MoreFunctionsControllerImpl.BalanceListener;
+import controller.Implementations.MoreFunctionsControllerImpl.Chart1Listener;
+import controller.Implementations.MoreFunctionsControllerImpl.Chart2Listener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
@@ -34,7 +36,7 @@ public class MoreFunctionsView extends PrisonManagerJFrame{
 	
 	public MoreFunctionsView(int rank){
 		this.rank=rank;
-		this.setSize(450, 300);
+		this.setSize(300, 200);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);
@@ -70,6 +72,12 @@ public class MoreFunctionsView extends PrisonManagerJFrame{
 	public void addBalanceListener(BalanceListener balanceListener){
 		viewBalance.addActionListener(balanceListener);
 	}
+	
+	public void addChart1Listener(Chart1Listener chart1Listener){
+		viewFirstChart.addActionListener(chart1Listener);
+	}
 
-
+	public void addChart2Listener(Chart2Listener chart2Listener){
+		viewSecondChart.addActionListener(chart2Listener);
+	}
 }

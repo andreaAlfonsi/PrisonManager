@@ -52,7 +52,7 @@ public class AddMovementControllerImpl {
 			addMovementView.displayErrorMessage("Movement inserted");
 		}
 		
-		public List<MovementImpl> getMovements(){
+		public static List<MovementImpl> getMovements(){
 			File f = new File("res/AllMovements.txt");
 			if(f.length()==0){
 				List<MovementImpl>list=new ArrayList<>();

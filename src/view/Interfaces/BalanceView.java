@@ -1,10 +1,13 @@
 package view.Interfaces;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SpringLayout;
 
 import controller.Implementations.BalanceControllerImpl.BackListener;
@@ -25,6 +28,7 @@ public class BalanceView extends PrisonManagerJFrame{
     final JButton compute = new JButton("Compute balance");
     final JButton back = new JButton("Back");
     final JLabel balance = new JLabel("Balance : ");
+    JTable table = new JTable();
     
     private int rank;
     
@@ -56,4 +60,17 @@ public class BalanceView extends PrisonManagerJFrame{
     public void addBackListener(BackListener backListener){
 		back.addActionListener(backListener);
 	}
+    
+    public void setLabel(String bal){
+    	balance.setText("Balance :  "+ bal);
+    }
+    
+    public void createTable(JTable table){
+    	this.table=table;
+    	table.setPreferredScrollableViewportSize(new Dimension(200,200));
+        table.setFillsViewportHeight(true);
+        JScrollPane js=new JScrollPane(table);
+        js.setVisible(true);
+    	center.add(js);
+    }
 }

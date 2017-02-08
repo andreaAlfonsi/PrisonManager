@@ -24,6 +24,7 @@ public class InsertPrisonerControllerImpl {
 		InsertPrisonerControllerImpl.insertPrisonerView=insertPrisonerView;
 		insertPrisonerView.addInsertPrisonerListener(new InsertPrisonerListener());
 		insertPrisonerView.addBackListener(new BackListener());
+		insertPrisonerView.addAddCrimeListener(new AddCrimeListener());
 		
 	}
 	
@@ -44,7 +45,7 @@ public class InsertPrisonerControllerImpl {
 				e.printStackTrace();
 			}
 
-				Prisoner p = new PrisonerImpl(insertPrisonerView.getName1(), insertPrisonerView.getSurname1(), insertPrisonerView.getBirth1(), insertPrisonerView.getPrisonerID1(), insertPrisonerView.getStart1(), insertPrisonerView.getEnd1());
+				Prisoner p = new PrisonerImpl(insertPrisonerView.getName1(), insertPrisonerView.getSurname1(), insertPrisonerView.getBirth1(), insertPrisonerView.getPrisonerID1(), insertPrisonerView.getStart1(), insertPrisonerView.getEnd1(),insertPrisonerView.getList());
 				if(isSomethingEmpty(p)){
 					insertPrisonerView.displayErrorMessage("complete all the fields");
 				}
@@ -64,6 +65,7 @@ public class InsertPrisonerControllerImpl {
 					else{
 						prisoners.add(p);
 						currentPrisoners.add(p);
+						insertPrisonerView.displayErrorMessage("User Inserted");
 						File f = new File("res/prisoners.txt");
 						File f2 = new File("res/CurrentPrisoners.txt");
 						FileOutputStream fo = null;
@@ -118,6 +120,22 @@ public class InsertPrisonerControllerImpl {
 		public void actionPerformed(ActionEvent arg0) {
 			insertPrisonerView.dispose();
 			new MainControllerImpl(new MainView(insertPrisonerView.getRank()));
+		}
+		
+	}
+	
+	public static class AddCrimeListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			List<String>list=insertPrisonerView.getList();
+			if(list.contains(insertPrisonerView.getCombo())){
+				insertPrisonerView.displayErrorMessage("crime already inserted");
+			}
+			else{
+				list.add(insertPrisonerView.getCombo());
+				insertPrisonerView.setList(list);
+			}
 		}
 		
 	}

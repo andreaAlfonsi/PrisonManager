@@ -32,11 +32,12 @@ public class PrisonerImpl extends PersonImpl implements Prisoner{
 	 * @param inizio inizio della reclusione
 	 * @param fine fine della reclusione
 	 */
-	public PrisonerImpl(String name, String surname, Date birthDate, int idPrigioniero, Date inizio, Date fine) {
+	public PrisonerImpl(String name, String surname, Date birthDate, int idPrigioniero, Date inizio, Date fine,List<String>list) {
 		super(name, surname, birthDate);
 		this.idPrigioniero=idPrigioniero;
 		this.inizio=inizio;
 		this.fine=fine;
+		this.crimini=list;
 	}
 
 	@Override

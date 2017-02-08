@@ -4,16 +4,23 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-import controller.Implementations.InsertPrisonerControllerImpl.InsertPrisonerListener;
+import controller.Implementations.InsertPrisonerControllerImpl.AddCrimeListener;
 import controller.Implementations.InsertPrisonerControllerImpl.BackListener;
+import controller.Implementations.InsertPrisonerControllerImpl.InsertPrisonerListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
@@ -36,6 +43,7 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	final JTextField surname1 = new JTextField(6);
 	final JLabel birthDate = new JLabel("birth Date");
 	final JTextField birthDate1 = new JTextField(6);
+	final PrisonManagerJPanel east;
 	final PrisonManagerJPanel center;
 	final JLabel start = new JLabel("Start of imprisonment");
 	final JTextField start1 = new JTextField(8);
@@ -43,6 +51,10 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	final JTextField end1 = new JTextField(8);
 	final JButton back = new JButton("Back");
 	final JLabel title = new JLabel("Insert a prisoner");
+    final JComboBox<?> type;
+    final JTextArea textArea;
+    final JButton add=new JButton("Add crime");
+	String[] crimes = {"Reati contro gli animali","Reati associativi","Blasfemia e sacrilegio","Reati economici e finanziari","Falsa testimonianza","Reati militari","Reati contro il patrimonio","Reati contro la persona","Reati nell' ordinamento italiano","Reati tributari","Traffico di droga","Casi di truffe"};
 	String pattern = "MM/dd/yyyy";
     SimpleDateFormat format = new SimpleDateFormat(pattern);
     Date date;
@@ -50,11 +62,25 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	
 	public InsertPrisonerView(int rank){
 		this.rank=rank;
-		this.setSize(450, 300);
+		this.setSize(450, 400);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);
 		this.getContentPane().add(BorderLayout.NORTH,north);
+		type = new JComboBox<String>(crimes);
+	    type.setSelectedItem(0);
+	    textArea = new JTextArea();
+	    textArea.setEditable(false);
+		east = new PrisonManagerJPanel(new SpringLayout());
+		east.add(type);
+		east.add(textArea);
+	    JScrollPane logScrollPane = new JScrollPane(add);
+		east.add(logScrollPane);
+		SpringUtilities.makeCompactGrid(east,
+                3, 1, //rows, cols
+                6, 6,        //initX, initY
+                6, 6);       //xPad, yPad
+		this.getContentPane().add(BorderLayout.EAST,east);
 		center = new PrisonManagerJPanel(new SpringLayout());
 		center.add(prisonerID);
 		center.add(prisonerID1);
@@ -135,4 +161,24 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 		return this.rank;
 	}
 	
+	public void setList(List<String>list){
+		textArea.setText("");
+		for(String s : list){
+			textArea.append(s+"\n");
+		}
+	}
+	
+	public List<String> getList(){
+		 String s[] = textArea.getText().split("\\r?\\n");
+		 ArrayList<String>list = new ArrayList<>(Arrays.asList(s));
+		 return list;
+	}
+	
+	public String getCombo(){
+		return type.getSelectedItem().toString();
+	}
+	
+	public void addAddCrimeListener(AddCrimeListener addCrimeListener){
+		add.addActionListener(addCrimeListener);
+	}
 }

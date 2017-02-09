@@ -17,10 +17,12 @@ import view.Interfaces.MainView;
 import view.Interfaces.MoreFunctionsView;
 import view.Interfaces.PrisonerProfileView;
 import view.Interfaces.RemovePrisonerView;
+import view.Interfaces.SupervisorFunctionsView;
 
 public class MainControllerImpl {
 
 	MainView mainView;
+	
 	public MainControllerImpl(MainView mainView){
 		this.mainView=mainView;
 		mainView.addLogoutListener(new LogoutListener());
@@ -28,6 +30,7 @@ public class MainControllerImpl {
 		mainView.addRemovePrisonerListener(new RemovePrisonerListener());
 		mainView.addViewPrisonerListener(new ViewPrisonerListener());
 		mainView.addMoreFunctionsListener(new MoreFunctionsListener());
+		mainView.addSupervisorListener(new SupervisorListener());
 	}
 		
 	public class LogoutListener implements ActionListener{
@@ -114,6 +117,15 @@ public class MainControllerImpl {
 		public void actionPerformed(ActionEvent arg0) {
 			 mainView.dispose();
 			 new MoreFunctionsControllerImpl(new MoreFunctionsView(mainView.getRank()));
+		}
+	}
+	
+	public class SupervisorListener implements ActionListener{
+		
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			 mainView.dispose();
+			 new SupervisorControllerImpl(new SupervisorFunctionsView(mainView.getRank()));
 		}
 	}
 

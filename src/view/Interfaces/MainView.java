@@ -10,6 +10,7 @@ import controller.Implementations.MainControllerImpl.InsertPrisonerListener;
 import controller.Implementations.MainControllerImpl.LogoutListener;
 import controller.Implementations.MainControllerImpl.MoreFunctionsListener;
 import controller.Implementations.MainControllerImpl.RemovePrisonerListener;
+import controller.Implementations.MainControllerImpl.SupervisorListener;
 import controller.Implementations.MainControllerImpl.ViewPrisonerListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
@@ -46,8 +47,11 @@ public class MainView extends PrisonManagerJFrame{
 		south.add(highRankOnly);
 		south.add(moreFunctions);
 		south.add(logout);
-		if(rank==1){
+		if(rank<2){
 			moreFunctions.setEnabled(false);
+		}
+		if(rank<3){
+			highRankOnly.setEnabled(false);
 		}
 		this.getContentPane().add(BorderLayout.SOUTH,south);
 		north = new PrisonManagerJPanel(new FlowLayout());
@@ -74,6 +78,10 @@ public class MainView extends PrisonManagerJFrame{
 	
 	public void addMoreFunctionsListener(MoreFunctionsListener moreFListener){
 		moreFunctions.addActionListener(moreFListener);
+	}
+	
+	public void addSupervisorListener(SupervisorListener supervisorListener){
+		highRankOnly.addActionListener(supervisorListener);
 	}
 	
 	public int getRank(){

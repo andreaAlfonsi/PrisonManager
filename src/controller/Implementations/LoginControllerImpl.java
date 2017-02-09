@@ -57,23 +57,26 @@ public class LoginControllerImpl implements LoginController{
 		
 	}
 	
-	public List<Guard> getGuards() throws IOException, ClassNotFoundException{
+	public static List<Guard> getGuards() throws IOException, ClassNotFoundException{
 		File f = new File("res/GuardieUserPass.txt");
-		FileInputStream fi = new FileInputStream(f);
-		ObjectInputStream oi = new ObjectInputStream(fi);
+		if(f.length()!=0){
+			FileInputStream fi = new FileInputStream(f);
+			ObjectInputStream oi = new ObjectInputStream(fi);
+			
+			List<Guard> guards = new ArrayList<>();
+			
+			try{
+				while(true){
+					Guard s = (Guard) oi.readObject();
+					guards.add(s);
+				}
+			}catch(EOFException eofe){}
+			
+			fi.close();
+			oi.close();
+			return guards;
+		}
+			return new ArrayList<Guard>();
 		
-		List<Guard> guards = new ArrayList<>();
-		
-		try{
-			while(true){
-				Guard s = (Guard) oi.readObject();
-				guards.add(s);
-			}
-		}catch(EOFException eofe){}
-		
-		fi.close();
-		oi.close();
-		
-		return guards;
 	}
 }

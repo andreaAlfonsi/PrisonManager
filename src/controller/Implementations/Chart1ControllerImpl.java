@@ -3,6 +3,7 @@ package controller.Implementations;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -38,7 +39,7 @@ public class Chart1ControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Map<Integer,Integer>map=new TreeMap<>();
-			final int opening=2010;
+			final int opening=2017;
 			List<Prisoner> list = null;
 			try {
 				list = MainControllerImpl.getPrisoners();
@@ -46,15 +47,20 @@ public class Chart1ControllerImpl {
 				e1.printStackTrace();
 			}
 			int max=getMax(list);
-			for(int i=opening;i<max;i++){
+			for(int i=opening;i<=max;i++){
 				int num = 0;;
 				for(Prisoner p:list){
-					if(p.getInizio().getYear()+1900<=i&&p.getFine().getYear()+1900>=i){
+					Calendar calendar = Calendar.getInstance();
+					Calendar calendar2 = Calendar.getInstance();
+					calendar.setTime(p.getInizio());
+					calendar2.setTime(p.getFine());
+					if(calendar.get(Calendar.YEAR)<=i&&calendar.get(Calendar.YEAR)>=i){
 						num++;
 					}		
 				}
 				map.put(i, num);
 			}
+			@SuppressWarnings("unused")
 			BarChart_AWT chart = new BarChart_AWT(map,"Number of prisoners chart","Chart");
 			
 			
@@ -62,11 +68,13 @@ public class Chart1ControllerImpl {
 		public int getMax(List<Prisoner>list){
 			int max=0;
 			for(Prisoner p: list){
-				if(p.getFine().getYear()>max){
-					max=p.getFine().getYear();
+				Calendar calendar = Calendar.getInstance();
+				calendar.setTime(p.getFine());
+				if(calendar.get(Calendar.YEAR)>max){
+					max=calendar.get(Calendar.YEAR);
 				}
 			}
-			return max+1900;
+			return max;
 		}
 	}
 	

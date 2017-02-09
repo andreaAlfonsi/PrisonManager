@@ -44,5 +44,9 @@ public interface Guard extends Person{
 	 *@return  
 	 */
 	public void setRank(int rank);
+
+	void setID(int idGuardia);
+
+	int getID();
 	
 }

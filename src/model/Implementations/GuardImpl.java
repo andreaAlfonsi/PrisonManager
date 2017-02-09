@@ -5,7 +5,7 @@ import java.util.Date;
 import model.Interfaces.Guard;
 
 public class GuardImpl extends PersonImpl implements Guard{
-
+	
 	/**
 	 * 
 	 */
@@ -59,6 +59,23 @@ public class GuardImpl extends PersonImpl implements Guard{
 	@Override
 	public void setRank(int rank) {
 		this.rank = rank;
+	}
+	
+	@Override
+	public int getID() {
+		return idGuardia;
+	}
+	
+	@Override
+	public void setID(int idGuardia) {
+		this.idGuardia = idGuardia;
+	}
+
+
+	@Override
+	public String toString() {
+		return "GuardImpl [rank=" + rank + ", telephoneNumber=" + telephoneNumber + ", idGuardia=" + idGuardia
+				+ ", password=" + password + "]";
 	}
 
 }

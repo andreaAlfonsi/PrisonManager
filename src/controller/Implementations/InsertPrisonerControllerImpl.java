@@ -66,6 +66,7 @@ public class InsertPrisonerControllerImpl {
 						prisoners.add(p);
 						currentPrisoners.add(p);
 						insertPrisonerView.displayErrorMessage("User Inserted");
+						insertPrisonerView.setList(new ArrayList<String>());
 						File f = new File("res/prisoners.txt");
 						File f2 = new File("res/CurrentPrisoners.txt");
 						FileOutputStream fo = null;

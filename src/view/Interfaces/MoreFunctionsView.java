@@ -8,10 +8,13 @@ import javax.swing.JLabel;
 import javax.swing.SpringLayout;
 
 import controller.Implementations.MoreFunctionsControllerImpl.AddMovementListener;
+import controller.Implementations.MoreFunctionsControllerImpl.AddVisitorsListener;
 import controller.Implementations.MoreFunctionsControllerImpl.BackListener;
 import controller.Implementations.MoreFunctionsControllerImpl.BalanceListener;
 import controller.Implementations.MoreFunctionsControllerImpl.Chart1Listener;
 import controller.Implementations.MoreFunctionsControllerImpl.Chart2Listener;
+import controller.Implementations.MoreFunctionsControllerImpl.ViewCellsListener;
+import controller.Implementations.MoreFunctionsControllerImpl.ViewVisitorsListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
@@ -30,13 +33,16 @@ public class MoreFunctionsView extends PrisonManagerJFrame{
 	final JButton viewBalance=new JButton("view Balance");
 	final JButton viewFirstChart=new JButton("view first chart");
 	final JButton viewSecondChart=new JButton("view second chart");
+	final JButton addVisitors = new JButton("Add visitors");
+	final JButton viewVisitors = new JButton("Check Visitors");
+	final JButton viewCells = new JButton("View Cells");
 	final PrisonManagerJPanel south;
 	final JButton back=new JButton("back");
 	private int rank;
 	
 	public MoreFunctionsView(int rank){
 		this.rank=rank;
-		this.setSize(300, 200);
+		this.setSize(300, 300);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);
@@ -46,8 +52,12 @@ public class MoreFunctionsView extends PrisonManagerJFrame{
 		center.add(viewBalance);
 		center.add(viewFirstChart);
 		center.add(viewSecondChart);
+		center.add(addVisitors);
+		center.add(viewVisitors);
+		center.add(viewCells);
+		center.add(back);
 		SpringUtilities.makeCompactGrid(center,
-                2, 2, //rows, cols
+                4, 2, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
 		this.getContentPane().add(BorderLayout.CENTER,center);
@@ -79,5 +89,16 @@ public class MoreFunctionsView extends PrisonManagerJFrame{
 
 	public void addChart2Listener(Chart2Listener chart2Listener){
 		viewSecondChart.addActionListener(chart2Listener);
+	}
+	public void addAddVisitorsListener(AddVisitorsListener addVisitorsListener){
+		addVisitors.addActionListener(addVisitorsListener);
+	}
+	
+	public void addViewVisitorsListener(ViewVisitorsListener viewVisitorsListener){
+		viewVisitors.addActionListener(viewVisitorsListener);
+	}
+	
+	public void addViewCellsListener(ViewCellsListener viewCellsListener){
+		viewCells.addActionListener(viewCellsListener);
 	}
 }

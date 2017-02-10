@@ -53,4 +53,6 @@ public interface Prisoner extends Person{
 	*/
 	public void setFine(Date fine);
 	
+	public int getCellID();
+	
 }

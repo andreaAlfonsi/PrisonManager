@@ -49,6 +49,8 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	final JTextField start1 = new JTextField(8);
 	final JLabel end = new JLabel("End of imprisonment");
 	final JTextField end1 = new JTextField(8);
+	final JLabel cell = new JLabel("Cell ID");
+	final JTextField cell1 = new JTextField(8);
 	final JButton back = new JButton("Back");
 	final JLabel title = new JLabel("Insert a prisoner");
     final JComboBox<?> type;
@@ -94,8 +96,10 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 		center.add(start1);
 		center.add(end);
 		center.add(end1);
+		center.add(cell);
+		center.add(cell1);
 		SpringUtilities.makeCompactGrid(center,
-                6, 2, //rows, cols
+                7, 2, //rows, cols
                 6, 6,        //initX, initY
                 6, 6);       //xPad, yPad
 		this.getContentPane().add(BorderLayout.CENTER,center);
@@ -151,6 +155,10 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 			e.printStackTrace();
 		}
 		return date;
+	}
+	
+	public int getCellID() {
+		return Integer.valueOf(this.cell1.getText());
 	}
 	
 	public void displayErrorMessage(String error){

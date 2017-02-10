@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Implementations.CellImpl;
 import model.Interfaces.Prisoner;
 import view.Interfaces.MainView;
 import view.Interfaces.RemovePrisonerView;
@@ -39,6 +40,17 @@ public class RemovePrisonerControllerImpl {
 				if(p.getIdPrigioniero()==removePrisonerView.getID()){
 					currentPrisoners.remove(p);
 					removePrisonerView.displayErrorMessage("user removed");
+					List<CellImpl>list=InsertPrisonerControllerImpl.getCells();
+					for(CellImpl c : list){
+						if(p.getCellID()==c.getId()){
+							c.setCurrentPrisoners(c.getCurrentPrisoners()-1);
+						}
+					}
+					try {
+						InsertPrisonerControllerImpl.setCells(list);
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 					found=true;
 					break;
 				}

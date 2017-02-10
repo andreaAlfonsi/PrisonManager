@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Interfaces.Guard;
-import view.Interfaces.MainView;
 import view.Interfaces.RemoveGuardView;
+import view.Interfaces.SupervisorFunctionsView;
 
 public class RemoveGuardControllerImpl {
 
@@ -84,7 +84,7 @@ public class RemoveGuardControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			removeGuardView.dispose();
-			new MainControllerImpl(new MainView(removeGuardView.getRank()));
+			new SupervisorControllerImpl(new SupervisorFunctionsView(removeGuardView.getRank()));
 		}
 		
 	}

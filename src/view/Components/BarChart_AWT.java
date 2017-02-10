@@ -9,10 +9,9 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset; 
 import org.jfree.data.category.DefaultCategoryDataset; 
-import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities; 
 
-public class BarChart_AWT extends ApplicationFrame{
+public class BarChart_AWT extends JFrame{
 	
 	/**
 	 * 

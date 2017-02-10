@@ -96,5 +96,22 @@ public class ViewGuardView extends PrisonManagerJFrame{
 	public int getID(){
 		return Integer.valueOf(guardID1.getText());
 	}
+	
+	public void setName(String name){
+		this.name1.setText(name);
+	}
+	
+	public void setSurname(String surname){
+		this.surname1.setText(surname);
+	}
+	public void setBirth(String birth){
+		this.birthDate1.setText(birth);
+	}
+	public void setRank(String rank1){
+		this.rank1.setText(rank1);
+	}
+	public void setTelephone(String telephone){
+		this.telephone1.setText(telephone);
+	}
 
 }

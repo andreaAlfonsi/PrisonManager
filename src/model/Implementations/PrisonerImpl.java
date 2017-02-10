@@ -21,6 +21,8 @@ public class PrisonerImpl extends PersonImpl implements Prisoner{
 	
 	/**lista dei crimini commessi*/
 	private List <String> crimini = new ArrayList<>();
+	
+	private int idCell;
 
 	/**
 	 * Instantiates a new prisoner.
@@ -32,12 +34,13 @@ public class PrisonerImpl extends PersonImpl implements Prisoner{
 	 * @param inizio inizio della reclusione
 	 * @param fine fine della reclusione
 	 */
-	public PrisonerImpl(String name, String surname, Date birthDate, int idPrigioniero, Date inizio, Date fine,List<String>list) {
+	public PrisonerImpl(String name, String surname, Date birthDate, int idPrigioniero, Date inizio, Date fine,List<String>list, int idCell) {
 		super(name, surname, birthDate);
 		this.idPrigioniero=idPrigioniero;
 		this.inizio=inizio;
 		this.fine=fine;
 		this.crimini=list;
+		this.idCell=idCell;
 	}
 
 	@Override
@@ -72,6 +75,14 @@ public class PrisonerImpl extends PersonImpl implements Prisoner{
 
 	public void setFine(Date fine) {
 		this.fine = fine;
+	}
+
+	public int getCellID() {
+		return idCell;
+	}
+
+	public void setIdCell(int idCell) {
+		this.idCell = idCell;
 	}
 
 	@Override

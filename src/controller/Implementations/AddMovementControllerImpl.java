@@ -26,7 +26,7 @@ public class AddMovementControllerImpl {
 		AddMovementControllerImpl.addMovementView.addBackListener(new BackListener());
 		AddMovementControllerImpl.addMovementView.addInsertListener(new InsertListener());
 	}
-	public static class BackListener implements ActionListener{
+	public class BackListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -35,13 +35,16 @@ public class AddMovementControllerImpl {
 		}
 		
 	}
+	
 	public static class InsertListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-			System.out.println("entrato");
-
-			MovementImpl m = new MovementImpl(addMovementView.getDesc(),addMovementView.getValue(),addMovementView.getSimbol().charAt(0));
+			MovementImpl m = new MovementImpl(addMovementView.getDesc(),addMovementView.getValue(),addMovementView.getSymbol().charAt(0));
+			if(m.getAmount()<=0){
+				addMovementView.displayErrorMessage("Input invalido");
+				return;
+			}
 			List<MovementImpl> movements = getMovements();
 			movements.add(m);
 			try {
@@ -49,9 +52,13 @@ public class AddMovementControllerImpl {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			addMovementView.displayErrorMessage("Movement inserted");
+			addMovementView.displayErrorMessage("Movimento inserito");
 		}
 		
+		/**
+		 * ritorna la lista dei movimenti di bilancio
+		 * @return lista dei movimenti
+		 */
 		public static List<MovementImpl> getMovements(){
 			File f = new File("res/AllMovements.txt");
 			if(f.length()==0){
@@ -89,6 +96,11 @@ public class AddMovementControllerImpl {
 			return list2;
 		}
 		
+		/**
+		 * salva la lista aggiornata di movimenti
+		 * @param list lista dei movimenti
+		 * @throws IOException
+		 */
 		public void setMovements(List<MovementImpl> list) throws IOException{
 			File f = new File("res/AllMovements.txt");
 			FileOutputStream fo = new FileOutputStream(f);

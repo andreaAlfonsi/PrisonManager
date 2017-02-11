@@ -6,20 +6,19 @@ import java.util.List;
 
 import model.Interfaces.Prisoner;
 
+/**
+ * implementazione di un prigioniero
+ */
 public class PrisonerImpl extends PersonImpl implements Prisoner{
 
-	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = -3204660779285410481L;
-	/** The id of the prisoner*/
+	
 	private int idPrigioniero;
 	
-	/**data di inizio della reclusione*/
 	private Date inizio;
 	
-	/**data di fine della reclusione*/
 	private Date fine;
 	
-	/**lista dei crimini commessi*/
 	private List <String> crimini = new ArrayList<>();
 	
 	private int idCell;
@@ -81,8 +80,8 @@ public class PrisonerImpl extends PersonImpl implements Prisoner{
 		return idCell;
 	}
 
-	public void setIdCell(int idCell) {
-		this.idCell = idCell;
+	public void setCellID(int cellID) {
+		this.idCell = cellID;
 	}
 
 	@Override

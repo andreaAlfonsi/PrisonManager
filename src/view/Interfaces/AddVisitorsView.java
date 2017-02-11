@@ -8,6 +8,7 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -17,8 +18,12 @@ import model.Implementations.VisitorImpl;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
+import view.Interfaces.Inter.AddVisitors;
 
-public class AddVisitorsView extends PrisonManagerJFrame{
+/**
+ * view in cui si aggiungono visitatori
+ */
+public class AddVisitorsView extends PrisonManagerJFrame implements AddVisitors{
 
 	/**
 	 * 
@@ -28,19 +33,21 @@ public class AddVisitorsView extends PrisonManagerJFrame{
 	String pattern = "MM/dd/yyyy";
     SimpleDateFormat format = new SimpleDateFormat(pattern);
 	final PrisonManagerJPanel south;
-	final JButton insert = new JButton("Insert");
+	final JButton insert = new JButton("Inserisci");
 	final PrisonManagerJPanel north;
-	final JLabel name = new JLabel("Name : ");
+	final JLabel name = new JLabel("Nome : ");
 	final JTextField name1 = new JTextField(6);
-	final JLabel surname = new JLabel("Surname :");
+	final JLabel surname = new JLabel("Cognome :");
 	final JTextField surname1 = new JTextField(6);
-	final JLabel birthDate = new JLabel("birth Date : ");
+	final JLabel birthDate = new JLabel("Data di nascita (mm/gg/aaaa) : ");
 	final JTextField birthDate1 = new JTextField(6);
 	final PrisonManagerJPanel center;
-	final JButton back = new JButton("Back");
-	final JLabel title = new JLabel("Insert a visitor");
-	final JLabel prisonerID = new JLabel("Prisoner id  : ");
+	final JButton back = new JButton("Indietro");
+	final JLabel title = new JLabel("Inserisci visitatore");
+	final JLabel prisonerID = new JLabel("Id prigioniero incontrato  : ");
 	final JTextField prisonerID1 = new JTextField(6);
+	
+	
 	public AddVisitorsView(int rank)
 	{	
 		this.rank=rank;
@@ -56,8 +63,10 @@ public class AddVisitorsView extends PrisonManagerJFrame{
 		center.add(surname1);	
 		center.add(birthDate);
 		center.add(birthDate1);
+		birthDate1.setText("01/01/2017");
 		center.add(prisonerID);
 		center.add(prisonerID1);
+		prisonerID1.setText("0");
 		SpringUtilities.makeCompactGrid(center,
                 4, 2, //rows, cols
                 6, 6,        //initX, initY
@@ -70,13 +79,11 @@ public class AddVisitorsView extends PrisonManagerJFrame{
 		this.setVisible(true);
 	}
 	
-	public VisitorImpl getVisitor()
-	{
+	public VisitorImpl getVisitor(){
 		Date date=null;
 		try {
 			date = format.parse(birthDate1.getText());
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		VisitorImpl v = new VisitorImpl(name1.getText(),surname1.getText(),date,Integer.valueOf(prisonerID1.getText()));
@@ -84,8 +91,10 @@ public class AddVisitorsView extends PrisonManagerJFrame{
 	}
 
 	public int getRank() {
-		// TODO Auto-generated method stub
 		return this.rank;
+	}
+	public void displayErrorMessage(String error){
+		JOptionPane.showMessageDialog(this, error);
 	}
 	
 	public void addBackListener(BackListener backListener){

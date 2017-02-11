@@ -10,12 +10,11 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import controller.Interfaces.LoginController;
 import model.Interfaces.Guard;
 import view.Interfaces.LoginView;
 import view.Interfaces.MainView;
 
-public class LoginControllerImpl implements LoginController{
+public class LoginControllerImpl {
 	
 	LoginView loginView;
 
@@ -38,7 +37,7 @@ public class LoginControllerImpl implements LoginController{
 			boolean isInside=false;
 
 			if(loginView.getUsername().isEmpty() || loginView.getPassword().isEmpty())
-				loginView.displayErrorMessage("you must enter username and password");
+				loginView.displayErrorMessage("Devi inserire username e password");
 			else{
 			for (Guard g : guards){		
 				if(loginView.getUsername().equals(String.valueOf(g.getUsername())) && loginView.getPassword().equals(g.getPassword())){
@@ -49,7 +48,7 @@ public class LoginControllerImpl implements LoginController{
 				}
 			}
 			if(isInside==false){
-				loginView.displayErrorMessage("username/password combination incorrect");
+				loginView.displayErrorMessage("Combinazione username/password non corretta");
 			}
 			isInside = false;
 		}

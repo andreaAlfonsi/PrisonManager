@@ -12,8 +12,9 @@ import controller.Implementations.RemoveGuardControllerImpl.BackListener;
 import controller.Implementations.RemoveGuardControllerImpl.RemoveGuardListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
+import view.Interfaces.Inter.RemoveGuard;
 
-public class RemoveGuardView extends PrisonManagerJFrame{
+public class RemoveGuardView extends PrisonManagerJFrame implements RemoveGuard{
 
 	/**
 	 * 
@@ -21,19 +22,19 @@ public class RemoveGuardView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = -4172744505801106816L;
 	
 	final PrisonManagerJPanel north;
-	final JLabel title = new JLabel("Remove guard");
+	final JLabel title = new JLabel("Rimuovi guardia");
 	final PrisonManagerJPanel center;
-	final JLabel guardID = new JLabel("Guard ID");
+	final JLabel guardID = new JLabel("ID Guardia");
 	final JTextField id = new JTextField(6);
 	final PrisonManagerJPanel south;
-	final JButton remove=new JButton("Remove");
+	final JButton remove=new JButton("Rimuovi");
 	final JButton back=new JButton("Back");
 
 	int rank;
 	
 	public RemoveGuardView(int rank){
 		this.rank=rank;
-		this.setSize(450, 300);
+		this.setSize(450, 150);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);
@@ -51,6 +52,8 @@ public class RemoveGuardView extends PrisonManagerJFrame{
 	}
 	
 	public int getID(){
+		if(id.getText().equals(""))
+			return -1;
 		return Integer.valueOf(id.getText());
 	}
 	
@@ -58,9 +61,11 @@ public class RemoveGuardView extends PrisonManagerJFrame{
 		JOptionPane.showMessageDialog(this, error);
 	}
 
-	public int getRank() {
+	public int getRank() {		
 		return this.rank;
 	}
+	
+	
 
 	public void addRemoveGuardListener(RemoveGuardListener removeGuardListener){
 		remove.addActionListener(removeGuardListener);

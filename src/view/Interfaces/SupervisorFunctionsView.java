@@ -15,8 +15,9 @@ import controller.Implementations.SupervisorControllerImpl.ViewGuardListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
+import view.Interfaces.Inter.SupervisorFunctions;
 
-public class SupervisorFunctionsView extends PrisonManagerJFrame{
+public class SupervisorFunctionsView extends PrisonManagerJFrame implements SupervisorFunctions{
 
 	/**
 	 * 
@@ -24,19 +25,19 @@ public class SupervisorFunctionsView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = 1240198114577795025L;
 	
 	final PrisonManagerJPanel north;
-	final JLabel title=new JLabel("Supervisor Functions");
+	final JLabel title=new JLabel("Funzioni reiservate");
 	final PrisonManagerJPanel center;
-	final JButton addGuard=new JButton("Add a guard");
-	final JButton removeGuard=new JButton("Remove a guard");
-	final JButton viewGuard=new JButton("View Guard");
-	final JButton viewPrisoners=new JButton("View prisoners in a certain fraction of time");
+	final JButton addGuard=new JButton("Aggiungi guardia");
+	final JButton removeGuard=new JButton("Rimuovi guardia");
+	final JButton viewGuard=new JButton("Vedi guardia");
+	final JButton viewPrisoners=new JButton("Vedi prigionieri in una determinata frazione di tempo");
 	final PrisonManagerJPanel south;
-	final JButton back=new JButton("Back");
+	final JButton back=new JButton("Indietro");
 	int rank;
 	
 	public SupervisorFunctionsView(int rank){
 		this.rank=rank;
-		this.setSize(415, 200);
+		this.setSize(500, 200);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);

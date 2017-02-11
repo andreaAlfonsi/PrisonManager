@@ -2,7 +2,12 @@ package model.Implementations;
 
 import java.io.Serializable;
 
-public class CellImpl implements Serializable{
+import model.Interfaces.Cell;
+
+/**
+ * implementazione di una cella
+ */
+public class CellImpl implements Cell, Serializable{
 
 	/**
 	 * 
@@ -14,6 +19,12 @@ public class CellImpl implements Serializable{
 	private int capacity;
 	private int CurrentPrisoners;
 	
+	/**
+	 * costruttore cella
+	 * @param id id cella
+	 * @param position posizione
+	 * @param capacity capacità
+	 */
 	public CellImpl(int id, String position, int capacity){
 		this.id=id;
 		this.position=position;

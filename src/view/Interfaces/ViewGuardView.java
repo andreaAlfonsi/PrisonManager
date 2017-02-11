@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -13,18 +14,19 @@ import controller.Implementations.ViewGuardControllerImpl.ViewGuardListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
+import view.Interfaces.Inter.ViewGuard;
 
-public class ViewGuardView extends PrisonManagerJFrame{
+public class ViewGuardView extends PrisonManagerJFrame implements ViewGuard{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 86423038519594644L;
 	final PrisonManagerJPanel south;
-	final JButton view = new JButton("View profile");
-	final JButton back = new JButton("Back");
+	final JButton view = new JButton("Vedi profilo");
+	final JButton back = new JButton("Indietro");
 	final PrisonManagerJPanel north;
-	final JLabel guardID = new JLabel("Guard ID");
+	final JLabel guardID = new JLabel("ID Guardia");
 	final JTextField guardID1 = new JTextField(2);
 	final JLabel name;
 	final JLabel name1;
@@ -44,23 +46,23 @@ public class ViewGuardView extends PrisonManagerJFrame{
 
 		this.getContentPane().setLayout(new BorderLayout());
 		center = new PrisonManagerJPanel(new SpringLayout());
-		name = new JLabel("Name:		");
+		name = new JLabel("Nome:		");
 		name1 = new JLabel();
 		center.add(name);
 		center.add(name1);
-		surname = new JLabel("Surname:	");
+		surname = new JLabel("Cognome:	");
 		surname1 = new JLabel();
 		center.add(surname);
 		center.add(surname1);
-		birthDate = new JLabel("Birthdate:	");
+		birthDate = new JLabel("Data di nascita :	");
 		birthDate1 = new JLabel();
 		center.add(birthDate);
 		center.add(birthDate1);
-		rankl = new JLabel("Rank:	");
+		rankl = new JLabel("Grado:	");
 		rank1 = new JLabel();
 		center.add(rankl);
 		center.add(rank1);
-		telephone = new JLabel("Telephone number:	");
+		telephone = new JLabel("Numero di telefono:	");
 		telephone1 = new JLabel();
 		center.add(telephone);
 		center.add(telephone1);
@@ -77,7 +79,7 @@ public class ViewGuardView extends PrisonManagerJFrame{
 		south.add(view);
 		south.add(back);
 		this.getContentPane().add(BorderLayout.SOUTH,south);
-		this.setSize(500, 300);
+		this.setSize(500, 230);
 		this.setVisible(true);
 	}
 	
@@ -92,8 +94,13 @@ public class ViewGuardView extends PrisonManagerJFrame{
 	public void addBackListener(BackListener backListener){
 		back.addActionListener(backListener);
 	}
+	public void displayErrorMessage(String error){
+		JOptionPane.showMessageDialog(this, error);
+	}
 	
 	public int getID(){
+		if(guardID1.getText().equals(""))
+			return -1;
 		return Integer.valueOf(guardID1.getText());
 	}
 	

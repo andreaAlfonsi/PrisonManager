@@ -1,5 +1,8 @@
 package model.Interfaces;
 
+/**
+ * interfaccia di una guardia
+ */
 public interface Guard extends Person{
 
 	/**
@@ -45,8 +48,16 @@ public interface Guard extends Person{
 	 */
 	public void setRank(int rank);
 
+	/**
+	 * metodo che setta l'id della guardia
+	 * @param idGuardia i guardia
+	 */
 	void setID(int idGuardia);
 
+	/**
+	 * metodo che restituisce l'id della guardia
+	 * @return id della guardia
+	 */
 	int getID();
 	
 }

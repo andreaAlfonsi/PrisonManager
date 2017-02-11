@@ -6,11 +6,12 @@ import java.util.List;
 
 import javax.swing.JTable;
 
+import controller.Interfaces.ViewCellsController;
 import model.Implementations.CellImpl;
 import view.Interfaces.MoreFunctionsView;
 import view.Interfaces.ViewCellsView;
 
-public class ViewCellsControllerImpl {
+public class ViewCellsControllerImpl implements ViewCellsController{
 
 	static ViewCellsView viewCellsView;
 	
@@ -34,8 +35,8 @@ public class ViewCellsControllerImpl {
 		List<CellImpl>list=null;
 		list=InsertPrisonerControllerImpl.getCells();
 		
-		String[]vet={"Cell ID","Description","Current Prisoners","Capacity"};
-		String[][]mat=new String[list.size()+1][vet.length];
+		String[]vet={"ID Cella","Descrizione","Prigionieri correnti","Capacità max"};
+		String[][]mat=new String[list.size()][vet.length];
 		for(int i=0;i<list.size();i++){
 			mat[i][0]=String.valueOf(list.get(i).getId());
 			mat[i][1]=list.get(i).getPosition();
@@ -43,6 +44,8 @@ public class ViewCellsControllerImpl {
 			mat[i][3]=String.valueOf(list.get(i).getCapacity());
 		}
 		JTable table=new JTable(mat,vet);
+		table.getColumnModel().getColumn(0).setPreferredWidth(20);
+		table.getColumnModel().getColumn(1).setPreferredWidth(200);
 		return table;
 	}
 }

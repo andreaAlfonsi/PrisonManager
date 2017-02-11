@@ -3,6 +3,9 @@ package model.Interfaces;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * interfaccia che rappresenta un prigioniero
+ */
 public interface Prisoner extends Person{
 
 	/**
@@ -53,6 +56,15 @@ public interface Prisoner extends Person{
 	*/
 	public void setFine(Date fine);
 	
+	/**
+	 * Metodo che ritorna l'id della cella 
+	 * @return id della cella
+	 */
 	public int getCellID();
 	
+	/**
+	 * metodo che setta l'id della cella
+	 * @param cellID id della cella
+	 */
+	public void setCellID(int cellID);
 }

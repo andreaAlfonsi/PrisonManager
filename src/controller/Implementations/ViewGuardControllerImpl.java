@@ -19,29 +19,46 @@ public class ViewGuardControllerImpl {
 		viewGuardView.addViewListener(new ViewGuardListener());
 	}
 	
+	/**
+	 * imposta la view in modo da mostrare la guardia
+	 */
 	public static class ViewGuardListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			List<Guard>list = null;
+			boolean found = false;
 			try {
 				list=LoginControllerImpl.getGuards();
 			} catch (ClassNotFoundException | IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			viewGuards(list,found);
 			
-			for(Guard g : list){
-				if(g.getID()==viewGuardView.getID()){
-					viewGuardView.setName(g.getName());
-					viewGuardView.setSurname(g.getSurname());
-					viewGuardView.setBirth(g.getBirthDate().toString());
-					viewGuardView.setRank(String.valueOf(g.getRank()));
-					viewGuardView.setTelephone(g.getTelephoneNumber());
-				}
-			}
+			
 		}
 		
+	}
+	
+	/**
+	 * mostra le caratteristiche della guardia nella gui
+	 * @param list lista delle guardie
+	 * @param found true se è stata trovata la guardia richiesta
+	 */
+	public static void viewGuards(List<Guard>list,boolean found){
+		for(Guard g : list){
+			if(g.getID()==viewGuardView.getID()){
+				viewGuardView.setName(g.getName());
+				viewGuardView.setSurname(g.getSurname());
+				viewGuardView.setBirth(g.getBirthDate().toString());
+				viewGuardView.setRank(String.valueOf(g.getRank()));
+				viewGuardView.setTelephone(g.getTelephoneNumber());
+				found=true;
+			}
+			
+		}
+		if(!found)
+			viewGuardView.displayErrorMessage("Guardia non trovata");
 	}
 	
 	public static class BackListener implements ActionListener{

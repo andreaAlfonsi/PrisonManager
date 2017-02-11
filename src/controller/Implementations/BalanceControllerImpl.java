@@ -6,21 +6,22 @@ import java.util.List;
 
 import javax.swing.JTable;
 
+import controller.Interfaces.BalanceController;
 import model.Implementations.MovementImpl;
 import view.Interfaces.BalanceView;
 import view.Interfaces.MoreFunctionsView;
 
-public class BalanceControllerImpl {
+public class BalanceControllerImpl implements BalanceController{
 
 	static BalanceView balanceView;
 	
 	public BalanceControllerImpl(BalanceView balanceView){
 		BalanceControllerImpl.balanceView=balanceView;
 		balanceView.addBackListener(new BackListener());
-		balanceView.addComputeListener(new ComputeListener());
+		showBalance();
 	}
 	
-	public static class BackListener implements ActionListener{
+	public class BackListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -30,34 +31,28 @@ public class BalanceControllerImpl {
 		
 	}
 	
-	public static class ComputeListener implements ActionListener{
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			int balance=0;
-			List<MovementImpl>list=AddMovementControllerImpl.InsertListener.getMovements();
-			for(MovementImpl m:list){	
-					switch(m.getChar()){
-				case '-' : balance-=m.getAmount();
-					break;
-				case '+' : balance+=m.getAmount();
-					break;
-				}
+	public void showBalance(){
+		int balance=0;
+		List<MovementImpl>list=AddMovementControllerImpl.InsertListener.getMovements();
+		for(MovementImpl m:list){	
+				switch(m.getChar()){
+			case '-' : balance-=m.getAmount();
+				break;
+			case '+' : balance+=m.getAmount();
+				break;
 			}
-			balanceView.setLabel(String.valueOf(balance));
-			String[]vet={"+ : -","amount","desc"};
-			String[][]mat=new String[list.size()+1][vet.length];
-			mat[0][0]=vet[0];
-			mat[0][1]=vet[1];
-			mat[0][2]=vet[2];
-			for(int i=0;i<list.size();i++){
-					mat[i+1][0]=String.valueOf(list.get(i).getChar());
-					mat[i+1][1]=String.valueOf(list.get(i).getAmount());
-					mat[i+1][2]=list.get(i).getDescr();
-			}
-			JTable table=new JTable(mat,vet);
-			balanceView.createTable(table);
 		}
+		balanceView.setLabel(String.valueOf(balance));
+		String[]vet={"+ : -","amount","desc","data"};
+		String[][]mat=new String[list.size()][vet.length];
+		for(int i=0;i<list.size();i++){
+				mat[i][0]=String.valueOf(list.get(i).getChar());
+				mat[i][1]=String.valueOf(list.get(i).getAmount());
+				mat[i][2]=list.get(i).getDescr();
+				mat[i][3]=list.get(i).getData1().toString();
+		}
+		JTable table=new JTable(mat,vet);
+		balanceView.createTable(table);
 		
 	}
 }

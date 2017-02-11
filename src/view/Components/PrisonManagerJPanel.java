@@ -5,6 +5,10 @@ import java.awt.LayoutManager;
 import javax.swing.JPanel;
 
 import java.awt.Color;
+
+/**
+ * jpanel predefinito per il programma
+ */
 public class PrisonManagerJPanel extends JPanel{
 
 	/**

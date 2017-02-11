@@ -12,8 +12,9 @@ import controller.Implementations.RemovePrisonerControllerImpl.BackListener;
 import controller.Implementations.RemovePrisonerControllerImpl.RemoveListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
+import view.Interfaces.Inter.RemovePrisoner;
 
-public class RemovePrisonerView extends PrisonManagerJFrame{
+public class RemovePrisonerView extends PrisonManagerJFrame implements RemovePrisoner{
 
 	/**
 	 * 
@@ -21,16 +22,16 @@ public class RemovePrisonerView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = 8578870382924181404L;
 	
 	final PrisonManagerJPanel center;
-	final JButton remove = new JButton("Remove");
-	final JButton back = new JButton("Back");
+	final JButton remove = new JButton("Rimuovi");
+	final JButton back = new JButton("Indietro");
 	final PrisonManagerJPanel north;
-	final JLabel prisonerID = new JLabel("Prisoner ID");
+	final JLabel prisonerID = new JLabel("ID Prigioniero");
 	final JTextField prisonerID1 = new JTextField(2);
 	private int rank;
 	
 	public RemovePrisonerView(int rank){
 		this.rank=rank;
-		this.setSize(450, 300);
+		this.setSize(450, 120);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(prisonerID);
@@ -52,6 +53,8 @@ public class RemovePrisonerView extends PrisonManagerJFrame{
 	}
 
 	public int getID(){
+		if(prisonerID1.getText().equals(""))
+			return -1;
 		return Integer.valueOf(prisonerID1.getText());
 	}
 	

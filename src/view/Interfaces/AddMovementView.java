@@ -15,8 +15,14 @@ import controller.Implementations.AddMovementControllerImpl.InsertListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
+import view.Interfaces.Inter.AddMovement;
 
-public class AddMovementView extends PrisonManagerJFrame{
+/**
+ * classe view dove si aggiungo movimenti di bilancio
+ * @author Utente
+ *
+ */
+public class AddMovementView extends PrisonManagerJFrame implements AddMovement{
 
 	/**
 	 * 
@@ -27,16 +33,18 @@ public class AddMovementView extends PrisonManagerJFrame{
     final PrisonManagerJPanel center;
     final PrisonManagerJPanel south;
     final PrisonManagerJPanel north;
-    final JLabel title= new JLabel("Add a movement");
-    final JLabel v = new JLabel("Value");
+    final JLabel title= new JLabel("Aggiungi un movimento");
+    final JLabel v = new JLabel("Ammontare");
     final JLabel simbolo = new JLabel("+ : -");
-    final JLabel desc = new JLabel("Description");
+    final JLabel desc = new JLabel("Descrizione");
     final JTextField input = new JTextField(6);
     final JTextField input_desc = new JTextField(6);
     final JComboBox<?> values;
-	final JButton back=new JButton("back");
-	final JButton insert=new JButton("insert");
+	final JButton back=new JButton("Indietro");
+	final JButton insert=new JButton("Inserisci");
 	int rank;
+	
+	
 	public AddMovementView(int rank)
 	{
 		this.rank=rank;
@@ -84,11 +92,11 @@ public class AddMovementView extends PrisonManagerJFrame{
 		return input_desc.getText();
 	}
 	
-	public int getValue(){
-		return Integer.valueOf(input.getText());
+	public Double getValue(){			
+			return Double.valueOf(input.getText());
 	}
 	
-	public String getSimbol(){		
+	public String getSymbol(){		
 		return String.valueOf(values.getSelectedItem());
 	}
 	

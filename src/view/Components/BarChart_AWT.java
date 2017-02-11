@@ -11,6 +11,9 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset; 
 import org.jfree.ui.RefineryUtilities; 
 
+/**
+ * classe per il bar chart
+ */
 public class BarChart_AWT extends JFrame{
 	
 	/**
@@ -20,13 +23,20 @@ public class BarChart_AWT extends JFrame{
 	
 	Map<Integer,Integer> map=null;
 	
+	/**
+	 * costruttore bar chart
+	 * @param map mappa da cui prendere i dati
+	 * @param title titolo grafico
+	 * @param chartName nome grafico
+	 */
 	public BarChart_AWT(Map<Integer, Integer> map,String title,String chartName) {
+		
 		super(title);
 		this.map=map;
 		JFreeChart barChart = ChartFactory.createBarChart(
 		         chartName,           
-		         "Years",            
-		         "Number of prisoners",            
+		         "Anno",            
+		         "Numero di prigonieri",            
 		         createDataset(),          
 		         PlotOrientation.VERTICAL,           
 		         true, true, false);
@@ -38,10 +48,13 @@ public class BarChart_AWT extends JFrame{
 	   this.setVisible( true ); 
 	   this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	   
-
 	}
 	
-	private CategoryDataset createDataset( ){       
+	/**
+	 * metodo che inserisce i dati nel diagramma
+	 * @return il dataset
+	 */
+	private CategoryDataset createDataset( ){
     
 		final String name = "-";        
 	

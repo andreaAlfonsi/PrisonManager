@@ -14,8 +14,9 @@ import controller.Implementations.MainControllerImpl.SupervisorListener;
 import controller.Implementations.MainControllerImpl.ViewPrisonerListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
+import view.Interfaces.Inter.Main;
 
-public class MainView extends PrisonManagerJFrame{
+public class MainView extends PrisonManagerJFrame implements Main{
 
 	/**
 	 * 
@@ -23,12 +24,12 @@ public class MainView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = -2585136897389059255L;
 
 	final PrisonManagerJPanel center;
-	final JButton addPrisoner= new JButton("Add prisoner");
-	final JButton removePrisoner=new JButton("Remove prisoner");;
-	final JButton viewPrisoner=new JButton("View prisoner");
+	final JButton addPrisoner= new JButton("Aggiungi prigioniero");
+	final JButton removePrisoner=new JButton("Rimuovi prigioniero");;
+	final JButton viewPrisoner=new JButton("Vedi profilo prigioniero");
 	final PrisonManagerJPanel south;
-	final JButton highRankOnly = new JButton("Supervisors only functions");
-	final JButton moreFunctions = new JButton("More functions");
+	final JButton highRankOnly = new JButton("Funzioni riservate (Grado 3)");
+	final JButton moreFunctions = new JButton("Altre funzioni (grado 2)");
 	final JButton logout=new JButton("Logout");
 	final PrisonManagerJPanel north;
 	final JLabel title=new JLabel("Prison Manager");
@@ -36,7 +37,7 @@ public class MainView extends PrisonManagerJFrame{
 	
 	public MainView(int rank){
 		this.rank=rank;
-		this.setSize(450, 150);
+		this.setSize(550, 150);
 		this.getContentPane().setLayout(new BorderLayout());
 		center = new PrisonManagerJPanel(new FlowLayout());
 		center.add(addPrisoner);
@@ -44,8 +45,8 @@ public class MainView extends PrisonManagerJFrame{
 		center.add(viewPrisoner);
 		this.getContentPane().add(BorderLayout.CENTER,center);
 		south=new PrisonManagerJPanel(new FlowLayout());
-		south.add(highRankOnly);
 		south.add(moreFunctions);
+		south.add(highRankOnly);
 		south.add(logout);
 		if(rank<2){
 			moreFunctions.setEnabled(false);

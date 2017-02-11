@@ -6,6 +6,9 @@ import java.util.Calendar;
 
 import model.Interfaces.Movement;
 
+/**
+ * implementazione di un movimento
+ */
 public class MovementImpl implements Serializable, Movement {
 
 	/**
@@ -20,7 +23,13 @@ public class MovementImpl implements Serializable, Movement {
 	private String data1;
 	private char ch;
 	
-	public MovementImpl(String descr, int amount, char ch){
+	/**
+	 * costruttore di movimento
+	 * @param descr descrizione
+	 * @param amount ammontare
+	 * @param ch segno
+	 */
+	public MovementImpl(String descr, double amount, char ch){
 		this.amount=amount;
 		this.descr=descr;
 		this.data=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");

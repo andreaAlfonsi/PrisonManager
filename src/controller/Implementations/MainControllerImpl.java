@@ -15,9 +15,9 @@ import view.Interfaces.InsertPrisonerView;
 import view.Interfaces.LoginView;
 import view.Interfaces.MainView;
 import view.Interfaces.MoreFunctionsView;
-import view.Interfaces.PrisonerProfileView;
 import view.Interfaces.RemovePrisonerView;
 import view.Interfaces.SupervisorFunctionsView;
+import view.Interfaces.ViewPrisonerView;
 
 public class MainControllerImpl {
 
@@ -66,7 +66,7 @@ public class MainControllerImpl {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			 mainView.dispose();
-			 new ViewPrisonerControllerImpl(new PrisonerProfileView(mainView.getRank()));
+			 new ViewPrisonerControllerImpl(new ViewPrisonerView(mainView.getRank()));
 		}
 	}
 	

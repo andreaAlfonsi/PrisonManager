@@ -24,8 +24,9 @@ import controller.Implementations.InsertPrisonerControllerImpl.InsertPrisonerLis
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
+import view.Interfaces.Inter.InsertPrisoner;
 
-public class InsertPrisonerView extends PrisonManagerJFrame{
+public class InsertPrisonerView extends PrisonManagerJFrame implements InsertPrisoner{
 
 	/**
 	 * 
@@ -33,29 +34,29 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = -3914632428464622887L;
 
 	final PrisonManagerJPanel south;
-	final JButton insert = new JButton("Insert");
+	final JButton insert = new JButton("Inserisci");
 	final PrisonManagerJPanel north;
-	final JLabel prisonerID = new JLabel("Prisoner ID");
+	final JLabel prisonerID = new JLabel("ID Prigioniero");
 	final JTextField prisonerID1 = new JTextField(6);
-	final JLabel name = new JLabel("Name");
+	final JLabel name = new JLabel("Nome");
 	final JTextField name1 = new JTextField(6);
-	final JLabel surname = new JLabel("Surname");
+	final JLabel surname = new JLabel("Cognome");
 	final JTextField surname1 = new JTextField(6);
-	final JLabel birthDate = new JLabel("birth Date");
+	final JLabel birthDate = new JLabel("Data di nascita (mm/gg/aaaa)");
 	final JTextField birthDate1 = new JTextField(6);
 	final PrisonManagerJPanel east;
 	final PrisonManagerJPanel center;
-	final JLabel start = new JLabel("Start of imprisonment");
+	final JLabel start = new JLabel("Inizio incarcerazione (mm/gg/aaaa)");
 	final JTextField start1 = new JTextField(8);
-	final JLabel end = new JLabel("End of imprisonment");
+	final JLabel end = new JLabel("Fine incarcerazione (mm/gg/aaaa)");
 	final JTextField end1 = new JTextField(8);
-	final JLabel cell = new JLabel("Cell ID");
+	final JLabel cell = new JLabel("ID Cella");
 	final JTextField cell1 = new JTextField(8);
-	final JButton back = new JButton("Back");
-	final JLabel title = new JLabel("Insert a prisoner");
+	final JButton back = new JButton("Indietro");
+	final JLabel title = new JLabel("Inserisci un prigioniero");
     final JComboBox<?> type;
     final JTextArea textArea;
-    final JButton add=new JButton("Add crime");
+    final JButton add=new JButton("Aggiungi un crimine");
 	String[] crimes = {"Reati contro gli animali","Reati associativi","Blasfemia e sacrilegio","Reati economici e finanziari","Falsa testimonianza","Reati militari","Reati contro il patrimonio","Reati contro la persona","Reati nell' ordinamento italiano","Reati tributari","Traffico di droga","Casi di truffe"};
 	String pattern = "MM/dd/yyyy";
     SimpleDateFormat format = new SimpleDateFormat(pattern);
@@ -63,8 +64,9 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
     private int rank;
 	
 	public InsertPrisonerView(int rank){
+		
 		this.rank=rank;
-		this.setSize(450, 400);
+		this.setSize(550, 400);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);
@@ -86,18 +88,23 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 		center = new PrisonManagerJPanel(new SpringLayout());
 		center.add(prisonerID);
 		center.add(prisonerID1);
+		prisonerID1.setText("0");
 		center.add(name);
 		center.add(name1);
 		center.add(surname);
 		center.add(surname1);	
 		center.add(birthDate);
 		center.add(birthDate1);
+		birthDate1.setText("01/01/1980");
 		center.add(start);
 		center.add(start1);
+		start1.setText("01/01/2018");
 		center.add(end);
 		center.add(end1);
+		end1.setText("01/01/2018");
 		center.add(cell);
 		center.add(cell1);
+		cell1.setText("0");
 		SpringUtilities.makeCompactGrid(center,
                 7, 2, //rows, cols
                 6, 6,        //initX, initY
@@ -189,4 +196,5 @@ public class InsertPrisonerView extends PrisonManagerJFrame{
 	public void addAddCrimeListener(AddCrimeListener addCrimeListener){
 		add.addActionListener(addCrimeListener);
 	}
+	
 }

@@ -16,8 +16,9 @@ import controller.Implementations.ViewPrisonerControllerImpl.ViewProfileListener
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
+import view.Interfaces.Inter.ViewPrisoner;
 
-public class PrisonerProfileView extends PrisonManagerJFrame{
+public class ViewPrisonerView extends PrisonManagerJFrame implements ViewPrisoner{
 
 	/**
 	 * 
@@ -25,10 +26,10 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = 7065438206105719545L;
 	
 	final PrisonManagerJPanel south;
-	final JButton view = new JButton("View profile");
-	final JButton back = new JButton("Back");
+	final JButton view = new JButton("Vedi profilo");
+	final JButton back = new JButton("Indietro");
 	final PrisonManagerJPanel north;
-	final JLabel prisonerID = new JLabel("Prisoner ID");
+	final JLabel prisonerID = new JLabel("ID Prigioniero");
 	final JTextField prisonerID1 = new JTextField(2);
 	final JLabel name;
 	final JLabel name1;
@@ -45,27 +46,28 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 	final JTextArea textArea;
 	private int rank;
 	
-	public PrisonerProfileView(int rank){
+	public ViewPrisonerView(int rank){
 		this.rank=rank;
+		this.setSize(500, 350);
 		this.getContentPane().setLayout(new BorderLayout());
 		center = new PrisonManagerJPanel(new SpringLayout());
-		name = new JLabel("Name:		");
+		name = new JLabel("Nome:		");
 		name1 = new JLabel();
 		center.add(name);
 		center.add(name1);
-		surname = new JLabel("Surname:	");
+		surname = new JLabel("Cognome:	");
 		surname1 = new JLabel();
 		center.add(surname);
 		center.add(surname1);
-		birthDate = new JLabel("Birthdate:	");
+		birthDate = new JLabel("Data di nascita:	");
 		birthDate1 = new JLabel();
 		center.add(birthDate);
 		center.add(birthDate1);
-		start = new JLabel("Reclusion start date:	");
+		start = new JLabel("Inizio reclusione:	");
 		start1 = new JLabel();
 		center.add(start);
 		center.add(start1);
-		end = new JLabel("Reclusion end date:	");
+		end = new JLabel("Fine reclusione:	");
 		end1 = new JLabel();
 		center.add(end);
 		center.add(end1);
@@ -87,7 +89,6 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 		south.add(view);
 		south.add(back);
 		this.getContentPane().add(BorderLayout.SOUTH,south);
-		this.setSize(500, 300);
 		this.setVisible(true);
 	}
 	
@@ -100,6 +101,8 @@ public class PrisonerProfileView extends PrisonManagerJFrame{
 	}
 	
 	public int getID(){
+		if(prisonerID1.getText().equals(""))
+			return -1;
 		return Integer.valueOf(prisonerID1.getText());
 	}
 	

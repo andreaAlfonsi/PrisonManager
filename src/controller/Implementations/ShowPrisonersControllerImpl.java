@@ -39,6 +39,9 @@ public class ShowPrisonersControllerImpl extends PrisonManagerJFrame{
 		
 	}
 	
+	/**
+	 * crea una tabella contenente i prigionieri che tra le due date prese in input erano in prigione
+	 */
 	public static class ComputeListener implements ActionListener{
 
 		@Override
@@ -59,7 +62,7 @@ public class ShowPrisonersControllerImpl extends PrisonManagerJFrame{
 			}
 			JTable table = new JTable();
 			String[]vet={"id","nome","cognome","giorno di nascita","inizio prigionia","fine prigionia"};
-			String[][]mat=new String[list.size()][vet.length];
+			String[][]mat=new String[inclusi.size()][vet.length];
 			for(int i=0;i<inclusi.size();i++){
 				mat[i][0]=String.valueOf(inclusi.get(i).getIdPrigioniero());
 				mat[i][1]=inclusi.get(i).getName();

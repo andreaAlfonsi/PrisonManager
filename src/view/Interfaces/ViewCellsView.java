@@ -8,13 +8,13 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SpringLayout;
 
 import controller.Implementations.ViewCellsControllerImpl.BackListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
+import view.Interfaces.Inter.ViewCells;
 
-public class ViewCellsView extends PrisonManagerJFrame{
+public class ViewCellsView extends PrisonManagerJFrame implements ViewCells{
 
 	/**
 	 * 
@@ -24,19 +24,19 @@ public class ViewCellsView extends PrisonManagerJFrame{
 	final PrisonManagerJPanel center;
     final PrisonManagerJPanel south;
     final PrisonManagerJPanel north;
-    final JButton back = new JButton("Back");
-    final JLabel title = new JLabel("View Prisoners : ");
+    final JButton back = new JButton("Indietro");
+    final JLabel title = new JLabel("Vedi celle : ");
     JTable table = new JTable();
 	
 	public ViewCellsView(int rank){
 		this.rank=rank;
 		
-		this.setSize(250, 300);	
+		this.setSize(550, 430);	
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);
 		this.getContentPane().add(BorderLayout.NORTH,north);
-		center = new PrisonManagerJPanel(new SpringLayout());
+		center = new PrisonManagerJPanel(new FlowLayout());
 		this.getContentPane().add(BorderLayout.CENTER,center);
 		south = new PrisonManagerJPanel(new FlowLayout());
 		south.add(back);
@@ -54,7 +54,7 @@ public class ViewCellsView extends PrisonManagerJFrame{
 	 
 	 public void createTable(JTable table){
 	    	this.table=table;
-	    	table.setPreferredScrollableViewportSize(new Dimension(200,200));
+	    	table.setPreferredScrollableViewportSize(new Dimension(500,300));
 	        table.setFillsViewportHeight(true);
 	        JScrollPane js=new JScrollPane(table);
 	        js.setVisible(true);

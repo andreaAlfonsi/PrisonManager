@@ -5,6 +5,9 @@ import java.util.Date;
 
 import model.Interfaces.Person;
 
+/**
+ * implementazione di una persona
+ */
 public abstract class PersonImpl implements Serializable, Person{
 	
 	private static final long serialVersionUID = -6542753884631178660L;

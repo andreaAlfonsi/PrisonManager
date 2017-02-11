@@ -12,8 +12,9 @@ import javax.swing.JTextField;
 import controller.Implementations.LoginControllerImpl.LoginListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
+import view.Interfaces.Inter.Login;
 
-public class LoginView extends PrisonManagerJFrame{
+public class LoginView extends PrisonManagerJFrame implements Login{
 
 	/**
 	 * 

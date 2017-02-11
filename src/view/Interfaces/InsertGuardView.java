@@ -8,6 +8,7 @@ import java.util.Date;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
@@ -18,8 +19,9 @@ import model.Interfaces.Guard;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
+import view.Interfaces.Inter.InsertGuard;
 
-public class InsertGuardView extends PrisonManagerJFrame{
+public class InsertGuardView extends PrisonManagerJFrame implements InsertGuard{
 
 	/**
 	 * 
@@ -27,31 +29,32 @@ public class InsertGuardView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = 6919464397187101572L;
 	
 	final PrisonManagerJPanel south;
-	final JButton insert = new JButton("Insert");
+	final JButton insert = new JButton("Inserisci");
 	final PrisonManagerJPanel north;
-	final JLabel guardID = new JLabel("Guard ID");
+	final JLabel guardID = new JLabel("ID Guardia");
 	final JTextField guardID1 = new JTextField(6);
-	final JLabel name = new JLabel("Name");
+	final JLabel name = new JLabel("Nome");
 	final JTextField name1 = new JTextField(6);
-	final JLabel surname = new JLabel("Surname");
+	final JLabel surname = new JLabel("Cognome");
 	final JTextField surname1 = new JTextField(6);
-	final JLabel birthDate = new JLabel("birth Date (mm/gg/aaaa)");
+	final JLabel birthDate = new JLabel("Data di nascita (mm/gg/aaaa)");
 	final JTextField birthDate1 = new JTextField(6);
 	final PrisonManagerJPanel center;
-	final JLabel guardRank = new JLabel("Rank");
+	final JLabel guardRank = new JLabel("Grado (1-2-3)");
 	final JTextField guardRank1 = new JTextField(8);
-	final JLabel telephoneNum = new JLabel("Telephone number");
+	final JLabel telephoneNum = new JLabel("Numero di telefono");
 	final JTextField telephoneNum1 = new JTextField(8);
 	final JLabel password = new JLabel("Password");
 	final JTextField password1 = new JTextField(8);
-	final JButton back = new JButton("Back");
-	final JLabel title = new JLabel("Insert a guard");
+	final JButton back = new JButton("Indietro");
+	final JLabel title = new JLabel("Inserisci una guardia");
 	String pattern = "MM/dd/yyyy";
     SimpleDateFormat format = new SimpleDateFormat(pattern);
     Date date;
 	int rank;
 	
 	public InsertGuardView(int rank){
+		
 		this.rank=rank;
 		this.setSize(450, 400);
 		this.getContentPane().setLayout(new BorderLayout());
@@ -61,16 +64,19 @@ public class InsertGuardView extends PrisonManagerJFrame{
 		center = new PrisonManagerJPanel(new SpringLayout());
 		center.add(guardID);
 		center.add(guardID1);
+		guardID1.setText("0");
 		center.add(name);
 		center.add(name1);
 		center.add(surname);
 		center.add(surname1);	
 		center.add(birthDate);
 		center.add(birthDate1);
+		birthDate1.setText("01/01/1980");
 		center.add(telephoneNum);
 		center.add(telephoneNum1);
 		center.add(guardRank);
 		center.add(guardRank1);
+		guardRank1.setText("0");
 		center.add(password);
 		center.add(password1);
 		SpringUtilities.makeCompactGrid(center,
@@ -87,6 +93,10 @@ public class InsertGuardView extends PrisonManagerJFrame{
 	
 	public void addBackListener(BackListener backListener){
 		back.addActionListener(backListener);
+	}
+	
+	public void displayErrorMessage(String error){
+		JOptionPane.showMessageDialog(this, error);
 	}
 	
 	public void addInsertListener(InsertListener insertListener){

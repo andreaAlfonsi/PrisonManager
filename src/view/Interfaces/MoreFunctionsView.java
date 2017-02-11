@@ -18,8 +18,9 @@ import controller.Implementations.MoreFunctionsControllerImpl.ViewVisitorsListen
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
 import view.Components.SpringUtilities;
+import view.Interfaces.Inter.MoreFunctions;
 
-public class MoreFunctionsView extends PrisonManagerJFrame{
+public class MoreFunctionsView extends PrisonManagerJFrame implements MoreFunctions{
 
 	/**
 	 * 
@@ -27,22 +28,22 @@ public class MoreFunctionsView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = -960406183837784254L;
 
 	final PrisonManagerJPanel north;
-	final JLabel title=new JLabel("More Functions");
+	final JLabel title=new JLabel("Altre funzioni");
 	final PrisonManagerJPanel center;
-	final JButton addMovement=new JButton("add a movement");
-	final JButton viewBalance=new JButton("view Balance");
-	final JButton viewFirstChart=new JButton("view first chart");
-	final JButton viewSecondChart=new JButton("view second chart");
-	final JButton addVisitors = new JButton("Add visitors");
-	final JButton viewVisitors = new JButton("Check Visitors");
-	final JButton viewCells = new JButton("View Cells");
+	final JButton addMovement=new JButton("Aggiungi un movimento");
+	final JButton viewBalance=new JButton("Guarda bilancio");
+	final JButton viewFirstChart=new JButton("Grafico prigionieri per anno");
+	final JButton viewSecondChart=new JButton("Grafico percentuale crimini");
+	final JButton addVisitors = new JButton("Aggiungi un visitatore");
+	final JButton viewVisitors = new JButton("Controlla visitatori");
+	final JButton viewCells = new JButton("Guarda celle");
 	final PrisonManagerJPanel south;
-	final JButton back=new JButton("back");
+	final JButton back=new JButton("Indietro");
 	private int rank;
 	
 	public MoreFunctionsView(int rank){
 		this.rank=rank;
-		this.setSize(300, 300);
+		this.setSize(400, 250);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);

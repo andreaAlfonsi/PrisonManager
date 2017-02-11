@@ -7,11 +7,12 @@ import java.util.List;
 
 import javax.swing.JTable;
 
+import controller.Interfaces.ViewVisitorsController;
 import model.Interfaces.Visitor;
 import view.Interfaces.MoreFunctionsView;
 import view.Interfaces.ViewVisitorsView;
 
-public class ViewVisitorsControllerImpl {
+public class ViewVisitorsControllerImpl implements ViewVisitorsController{
 
 	static ViewVisitorsView viewVisitorsView;
 	
@@ -21,7 +22,7 @@ public class ViewVisitorsControllerImpl {
 		viewVisitorsView.createTable(getTable());
 	}
 	
-	public static class BackListener implements ActionListener{
+	public class BackListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -32,21 +33,24 @@ public class ViewVisitorsControllerImpl {
 	}
 	
 	public JTable getTable(){
+		//creo una lista in cui inserisco i visitatori
 		List<Visitor>list=null;
 		try {
-			list=AddVisitorsControllerImpl.InsertListener.getVisitor();
+			list=AddVisitorsControllerImpl.InsertListener.getVisitors();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
 		
-		String[]vet={"Name","Surname","BirthDate","Prisoner Visited ID"};
-		String[][]mat=new String[list.size()+1][vet.length];
+		//metto gli elementi della lista in una matrice
+		String[]vet={"Nome","Cognome","Data di nascita","ID prigioniero visitato"};
+		String[][]mat=new String[list.size()][vet.length];
 		for(int i=0;i<list.size();i++){
 			mat[i][0]=list.get(i).getName();
 			mat[i][1]=list.get(i).getSurname();
 			mat[i][2]=list.get(i).getBirthDate().toString();
-			mat[i][3]=String.valueOf(list.get(i).getIdPrisoner());
+			mat[i][3]=String.valueOf(list.get(i).getPrisonerID());
 		}
+		//creo la tabella passandogli la matrice
 		JTable table=new JTable(mat,vet);
 		return table;
 	}

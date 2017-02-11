@@ -17,8 +17,9 @@ import controller.Implementations.ShowPrisonersControllerImpl.BackListener;
 import controller.Implementations.ShowPrisonersControllerImpl.ComputeListener;
 import view.Components.PrisonManagerJFrame;
 import view.Components.PrisonManagerJPanel;
+import view.Interfaces.Inter.ShowPrisoners;
 
-public class ShowPrisonersView extends PrisonManagerJFrame{
+public class ShowPrisonersView extends PrisonManagerJFrame implements ShowPrisoners{
 
 	/**
 	 * 
@@ -26,31 +27,34 @@ public class ShowPrisonersView extends PrisonManagerJFrame{
 	private static final long serialVersionUID = 7096756054745433188L;
 	
 	final PrisonManagerJPanel north;
-	final JLabel from=new JLabel("From (mm/gg/aaaa)");
-	final JLabel to=new JLabel("To (mm/gg/aaaa)");
+	final JLabel from=new JLabel("Reclusi Da (mm/gg/aaaa)");
+	final JLabel to=new JLabel("A (mm/gg/aaaa)");
 	final JTextField from1 = new JTextField(6);
 	final JTextField to1 = new JTextField(6);
 	final PrisonManagerJPanel center;
     JTable table = new JTable();
 	final PrisonManagerJPanel south;
-	final JButton compute=new JButton("Compute");
-	final JButton back=new JButton("Back");
+	final JButton compute=new JButton("Calcola");
+	final JButton back=new JButton("Indietro");
+    JScrollPane js;
 	int rank;
 	String pattern = "MM/dd/yyyy";
     SimpleDateFormat format = new SimpleDateFormat(pattern);
 	
 	public ShowPrisonersView(int rank){
 		this.rank=rank;
-		this.setSize(415, 300);
+		this.setSize(800, 370);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(from);
 		north.add(from1);
+		from1.setText("01/31/1980");
 		north.add(to);
 		north.add(to1);
+		to1.setText("01/31/2021");
 		this.getContentPane().add(BorderLayout.NORTH,north);
 		center = new PrisonManagerJPanel(new FlowLayout());
-		center.add(table);
+		js=new JScrollPane(table);
 		this.getContentPane().add(BorderLayout.CENTER,center);
 		south = new PrisonManagerJPanel(new FlowLayout());
 		south.add(compute);
@@ -60,11 +64,13 @@ public class ShowPrisonersView extends PrisonManagerJFrame{
 	}
 	
     public void createTable(JTable table){
+    	center.removeAll();
     	this.table=table;
-    	table.setPreferredScrollableViewportSize(new Dimension(400,400));
-        JScrollPane js=new JScrollPane(table);
-        js.setVisible(true);
+    	table.setPreferredScrollableViewportSize(new Dimension(700,200));
+        js=new JScrollPane(table);
     	center.add(js);
+    	js.revalidate();
+    	this.setVisible(true);
     }
 
 	public int getRank() {

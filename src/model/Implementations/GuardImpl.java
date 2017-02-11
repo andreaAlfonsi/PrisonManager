@@ -4,6 +4,9 @@ import java.util.Date;
 
 import model.Interfaces.Guard;
 
+/**
+ * implementazione di una guardia
+ */
 public class GuardImpl extends PersonImpl implements Guard{
 	
 	/**
@@ -16,6 +19,16 @@ public class GuardImpl extends PersonImpl implements Guard{
 	private int idGuardia;
 	private String password;
 	
+	/**
+	 * costruttore di una guardia
+	 * @param name nome
+	 * @param surname cognome
+	 * @param birthDate data di nascita
+	 * @param rank grado
+	 * @param telephoneNumber numero di telefono
+	 * @param idGuardia id guardia
+	 * @param password password
+	 */
 	public GuardImpl(String name, String surname, Date birthDate, int rank, String telephoneNumber, int idGuardia,
 			String password) {
 		super(name, surname, birthDate);
@@ -75,7 +88,7 @@ public class GuardImpl extends PersonImpl implements Guard{
 	@Override
 	public String toString() {
 		return "GuardImpl [rank=" + rank + ", telephoneNumber=" + telephoneNumber + ", idGuardia=" + idGuardia
-				+ ", password=" + password + "]";
+				+ "]";
 	}
 
 }

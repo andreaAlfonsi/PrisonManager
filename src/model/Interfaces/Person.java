@@ -1,7 +1,9 @@
 package model.Interfaces;
 
 import java.util.Date;
-
+/**
+ * questa interfaccia rappresenta una persona
+ */
 public interface Person {
 
 	/**

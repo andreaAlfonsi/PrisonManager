@@ -113,14 +113,14 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 				Calendar calendar2 = Calendar.getInstance();
 				calendar.setTime(p.getInizio());
 				calendar2.setTime(p.getFine());
-				if(calendar.get(Calendar.YEAR)<=i&&calendar.get(Calendar.YEAR)>=i){
+				if(calendar.get(Calendar.YEAR)<=i&&calendar2.get(Calendar.YEAR)>=i){
 					num++;
 				}		
 			}
 			map.put(i, num);
 		}
 		//creo il grafico
-		BarChart_AWT chart = new BarChart_AWT(map,"Numero priogionieri per anno","Numero prigionieri per anno");
+		BarChart_AWT chart = new BarChart_AWT(map,"Numero prigionieri per anno","Numero prigionieri per anno");
 		chart.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
 	}

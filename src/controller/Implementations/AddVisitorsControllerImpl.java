@@ -174,7 +174,7 @@ public class AddVisitorsControllerImpl {
 			e.printStackTrace();
 		}
 	}
-	}
+}
 
 
 

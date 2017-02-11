@@ -44,7 +44,7 @@ public class InsertGuardView extends PrisonManagerJFrame implements InsertGuard{
 	final JTextField guardRank1 = new JTextField(8);
 	final JLabel telephoneNum = new JLabel("Numero di telefono");
 	final JTextField telephoneNum1 = new JTextField(8);
-	final JLabel password = new JLabel("Password");
+	final JLabel password = new JLabel("Password(6 caratt. min)");
 	final JTextField password1 = new JTextField(8);
 	final JButton back = new JButton("Indietro");
 	final JLabel title = new JLabel("Inserisci una guardia");

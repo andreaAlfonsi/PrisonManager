@@ -41,6 +41,10 @@ public class ShowPrisonersView extends PrisonManagerJFrame implements ShowPrison
 	String pattern = "MM/dd/yyyy";
     SimpleDateFormat format = new SimpleDateFormat(pattern);
 	
+    /**
+     * costruttore
+     * @param rank il rank della guardia che sta visualizzando il programma
+     */
 	public ShowPrisonersView(int rank){
 		this.rank=rank;
 		this.setSize(800, 370);

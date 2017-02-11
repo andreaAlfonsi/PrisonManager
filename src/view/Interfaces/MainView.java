@@ -35,6 +35,10 @@ public class MainView extends PrisonManagerJFrame implements Main{
 	final JLabel title=new JLabel("Prison Manager");
 	private int rank;
 	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public MainView(int rank){
 		this.rank=rank;
 		this.setSize(550, 150);

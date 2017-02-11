@@ -31,6 +31,9 @@ public class LoginView extends PrisonManagerJFrame implements Login{
 	final PrisonManagerJPanel north;
 	final JLabel title = new JLabel("Prison Manager");
 	
+	/**
+	 * costruttore
+	 */
 	public LoginView(){
 		this.setSize(400, 130);
 		this.getContentPane().setLayout(new BorderLayout());

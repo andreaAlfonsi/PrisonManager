@@ -10,10 +10,17 @@ import view.Interfaces.ShowPrisonersView;
 import view.Interfaces.SupervisorFunctionsView;
 import view.Interfaces.ViewGuardView;
 
+/**
+ * controller che gestisce la supervisor functions view
+ */
 public class SupervisorControllerImpl {
 
 	static SupervisorFunctionsView supervisorFunctionsView;
 	
+	/**
+	 * costruttore 
+	 * @param supervisorFunctionsView la view
+	 */
 	public SupervisorControllerImpl(SupervisorFunctionsView supervisorFunctionsView){
 		SupervisorControllerImpl.supervisorFunctionsView=supervisorFunctionsView;
 		supervisorFunctionsView.addBackListener(new BackListener());
@@ -23,6 +30,9 @@ public class SupervisorControllerImpl {
 		supervisorFunctionsView.addviewGuardListener(new ViewGuardListener());
 	}
 	
+	/**
+	 * listener che apre la view precedente
+	 */
 	public static class BackListener implements ActionListener{
 
 		@Override
@@ -33,6 +43,9 @@ public class SupervisorControllerImpl {
 		
 	}
 	
+	/**
+	 * listener che apre la insert guard view
+	 */
 	public static class InsertGuardListener implements ActionListener{
 
 		@Override
@@ -43,6 +56,9 @@ public class SupervisorControllerImpl {
 		
 	}
 	
+	/**
+	 * listener che apre la remove guad view
+	 */
 	public static class RemoveGuardListener implements ActionListener{
 
 		@Override
@@ -53,6 +69,9 @@ public class SupervisorControllerImpl {
 		
 	}
 	
+	/**
+	 * listener che apre la show prisoners view
+	 */
 	public static class ShowPrisonersListener implements ActionListener{
 
 		@Override
@@ -63,6 +82,9 @@ public class SupervisorControllerImpl {
 		
 	}
 	
+	/**
+	 * listener che apre la view guard view
+	 */
 	public static class ViewGuardListener implements ActionListener{
 
 		@Override

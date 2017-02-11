@@ -25,10 +25,17 @@ import view.Interfaces.MoreFunctionsView;
 import view.Interfaces.ViewCellsView;
 import view.Interfaces.ViewVisitorsView;
 
+/**
+ * controller della more functions view
+ */
 public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 
 	 MoreFunctionsView moreFunctionsView;
 	
+	 /**
+	  * costruttore
+	  * @param moreFunctionsView la view
+	  */
 	public MoreFunctionsControllerImpl(MoreFunctionsView moreFunctionsView){
 		this.moreFunctionsView=moreFunctionsView;
 		moreFunctionsView.addBackListener(new BackListener());
@@ -41,6 +48,11 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 		moreFunctionsView.addViewCellsListener(new ViewCellsListener());
 	}
 	
+	/**
+	 * listener che fa tornare alla pagina precedente
+	 * @author Utente
+	 *
+	 */
 	public class BackListener implements ActionListener{
 
 		@Override
@@ -51,6 +63,9 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 		
 	}
 	
+	/**
+	 * listener che apre la add movement view
+	 */
 	public class AddMovementListener implements ActionListener{
 
 		@Override
@@ -61,6 +76,9 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 		
 	}
 	
+	/**
+	 * listener che apre la balance view
+	 */
 	public class BalanceListener implements ActionListener{
 
 		@Override
@@ -74,16 +92,21 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 	
 	public void createChart1(){
 
+		//creo una mappa contenente gli anni e il numero dei prigioneri in quell anno
 		Map<Integer,Integer>map=new TreeMap<>();
-		final int opening=2017;
+		//anno in cui ha aperto la prigione
+		final int OPENING=2017;
+		//salvo la lista di prigionieri
 		List<Prisoner> list = null;
 		try {
 			list = MainControllerImpl.getPrisoners();
 		} catch (ClassNotFoundException | IOException e1) {
 			e1.printStackTrace();
 		}
+		//recupero l'anno massimo in cui un prigioniero è imprigionato
 		int max=getMax(list);
-		for(int i=opening;i<=max;i++){
+		//ciclo tutti gli anni e modifico il numero di prigionieri
+		for(int i=OPENING;i<=max;i++){
 			int num = 0;;
 			for(Prisoner p:list){
 				Calendar calendar = Calendar.getInstance();
@@ -96,6 +119,7 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 			}
 			map.put(i, num);
 		}
+		//creo il grafico
 		BarChart_AWT chart = new BarChart_AWT(map,"Numero priogionieri per anno","Numero prigionieri per anno");
 		chart.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -113,6 +137,9 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 		return max;
 	}
 	
+	/**
+	 * listener che si occupa di aprire il primo grafico 
+	 */
 	public class Chart1Listener implements ActionListener{
 
 		@Override
@@ -123,16 +150,18 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 	
 	public void createChart2(){
 
-
+		//salvo le categorie di reati in un vettore che poi converto in lista
 		String[] crimes = {"Reati contro gli animali","Reati associativi","Blasfemia e sacrilegio","Reati economici e finanziari","Falsa testimonianza","Reati militari","Reati contro il patrimonio","Reati contro la persona","Reati nell' ordinamento italiano","Reati tributari","Traffico di droga","Casi di truffe"};
-		 ArrayList<String>crimesList = new ArrayList<>(Arrays.asList(crimes));
+		ArrayList<String>crimesList = new ArrayList<>(Arrays.asList(crimes));
 		List<Prisoner> list = null;
+		//recupero i prigionieri correnti in una lista
 		try {
 			list = MainControllerImpl.getCurrentPrisoners();
 		} catch (ClassNotFoundException | IOException e1) {
 			e1.printStackTrace();
 		}
 		
+		//creo una mappa in cui inserire come chiave il reato e come valore il numero di prigionieri che l'anno commesso
 		Map<String,Integer>map=new HashMap<>();
 		for(String s : crimesList){
 			map.put(s, 0);
@@ -144,10 +173,14 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 				}
 			}
 		}
+		//creo il grafico
 		PieChart_AWT pie = new PieChart_AWT("Percentuale crimini commessi dai reclusi attuali",map);
 		pie.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 	
+	/**
+	 * listener che si occupa di lanciare il secondo grafico
+	 */
 	public class Chart2Listener implements ActionListener{
 
 		@Override
@@ -157,6 +190,9 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 		
 	}
 	
+	/**
+	 * listener che apre l'add visitors view
+	 */
 	public class AddVisitorsListener implements ActionListener{
 
 		@Override
@@ -168,6 +204,9 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 		
 	}
 	
+	/**
+	 * listener che apre la view visitors view
+	 */
 	public class ViewVisitorsListener implements ActionListener{
 
 		@Override
@@ -179,6 +218,9 @@ public class MoreFunctionsControllerImpl implements MoreFunctionsController{
 		
 	}
 	
+	/**
+	 * listener che apre la view cells view
+	 */
 	public class ViewCellsListener implements ActionListener{
 
 		@Override

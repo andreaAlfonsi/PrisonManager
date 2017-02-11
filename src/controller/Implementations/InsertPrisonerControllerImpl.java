@@ -21,10 +21,17 @@ import model.Interfaces.Prisoner;
 import view.Interfaces.InsertPrisonerView;
 import view.Interfaces.MainView;
 
+/**
+ * controller della view insertprisoner
+ */
 public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 
 	static InsertPrisonerView insertPrisonerView;
 	
+	/**
+	 * costruttore
+	 * @param insertPrisonerView la view
+	 */
 	public InsertPrisonerControllerImpl(InsertPrisonerView insertPrisonerView) {
 		InsertPrisonerControllerImpl.insertPrisonerView=insertPrisonerView;
 		insertPrisonerView.addInsertPrisonerListener(new InsertPrisonerListener());
@@ -38,6 +45,7 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 		boolean correct=true;
 		 List<Prisoner>prisoners=new ArrayList<>();
 		 List<Prisoner>currentPrisoners=new ArrayList<>();
+		 //recupero le liste di prigionieri correnti e storici
 		 try {
 			prisoners=MainControllerImpl.getPrisoners();
 			currentPrisoners=MainControllerImpl.getCurrentPrisoners();
@@ -46,8 +54,10 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		 	//recupero il prigioniero inserito nella view
 			Prisoner p = new PrisonerImpl(insertPrisonerView.getName1(), insertPrisonerView.getSurname1(), insertPrisonerView.getBirth1(), insertPrisonerView.getPrisonerID1(), insertPrisonerView.getStart1(), insertPrisonerView.getEnd1(),insertPrisonerView.getList(),insertPrisonerView.getCellID());
+			
+			//controllo che non ci siano errori
 			if(isSomethingEmpty(p)){
 				insertPrisonerView.displayErrorMessage("Completa tutti i campi");
 			}
@@ -65,24 +75,30 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 					insertPrisonerView.displayErrorMessage("Correggi le date");
 				}
 				else{
+					//aggiungo nuovo prigioniero in entrambe le liste
 					prisoners.add(p);
 					currentPrisoners.add(p);
+					//recupero le celle salvate
 					List<CellImpl>list=getCells();
+					//controllo che la cella inserita non sia piena
 					for(CellImpl c : list){
 						if(p.getCellID()==c.getId()||p.getCellID()<0||p.getCellID()>49){
 							if(c.getCapacity()==c.getCurrentPrisoners()){
 								insertPrisonerView.displayErrorMessage("Prova con un'altra cella");
 								return;
 								}
+						//aggiungo un membro alla cella
 						c.setCurrentPrisoners(c.getCurrentPrisoners()+1);
 
-							}
+						}
 					}
 					try {
+						//salvo la lista di celle aggiornata
 						setCells(list);
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
+					//salvo le liste di prigionieri aggiornate
 					setPrisoners(prisoners, currentPrisoners);
 					insertPrisonerView.displayErrorMessage("Prigioniero inserito");
 					insertPrisonerView.setList(new ArrayList<String>());
@@ -91,6 +107,9 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 			}
 	}
 	
+	/**
+	 * listener che si occupa di inserire prigionieri
+	 */
 	public class InsertPrisonerListener implements ActionListener{
 
 		@Override
@@ -101,7 +120,9 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 		
 	}
 	
-
+	/**
+	 * listener che fa tornare alla pagina precedente
+	 */
 	public class BackListener implements ActionListener{
 
 		@Override
@@ -112,15 +133,21 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 		
 	}
 	
+	/**
+	 * listener che aggiunge un crimine alla lista dei crimini del prigioniero
+	 */
 	public class AddCrimeListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+			//recupero i crimini inseriti nella view
 			List<String>list=insertPrisonerView.getList();
+			//controllo che il crimine inserito non fosse gia presente
 			if(list.contains(insertPrisonerView.getCombo())){
 				insertPrisonerView.displayErrorMessage("Crimine già inserito");
 			}
 			else{
+				//inserisco il crimine
 				list.add(insertPrisonerView.getCombo());
 				insertPrisonerView.setList(list);
 			}
@@ -156,6 +183,7 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 		}
 		try{
 			while(true){
+				//salvo la situazione delle celle in una lista
 				CellImpl s = (CellImpl) is.readObject();
 				list.add(s);
 			}
@@ -170,25 +198,27 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//ritorno la lista
 		return list;
 	}
 	
 	/**
-	 * modifica il numero dei prigionieri nella cella
-	 * @param list
+	 * salva la lista di celle aggiornata
+	 * @param list lista di celle
 	 * @throws IOException
 	 */
 	public static void setCells(List<CellImpl> list) throws IOException{
 		File f = new File("res/Celle.txt");
 		FileOutputStream fo = new FileOutputStream(f);
 		ObjectOutputStream os = new ObjectOutputStream(fo);
+		//cancella il vecchio contenuto del file
 		os.flush();
 		fo.flush();
+		//scrive ogni cella sul file
 		for(CellImpl c : list){
 			os.writeObject(c);
 		}
 		os.close();
-		System.out.println(list.toString());
 	}
 	
 	/**
@@ -216,6 +246,7 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//salva il contenuto delle liste sui file
 		for(Prisoner s : prisoners){
 			try {
 				os.writeObject(s);

@@ -53,6 +53,10 @@ public class InsertGuardView extends PrisonManagerJFrame implements InsertGuard{
     Date date;
 	int rank;
 	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public InsertGuardView(int rank){
 		
 		this.rank=rank;

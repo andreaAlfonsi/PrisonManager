@@ -28,6 +28,10 @@ public class ViewCellsView extends PrisonManagerJFrame implements ViewCells{
     final JLabel title = new JLabel("Vedi celle : ");
     JTable table = new JTable();
 	
+    /**
+     * costruttore
+     * @param rank il rank della guardia che sta visualizzando il programma
+     */
 	public ViewCellsView(int rank){
 		this.rank=rank;
 		

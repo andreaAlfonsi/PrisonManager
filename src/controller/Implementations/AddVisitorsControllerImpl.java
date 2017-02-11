@@ -18,11 +18,17 @@ import model.Interfaces.Visitor;
 import view.Interfaces.AddVisitorsView;
 import view.Interfaces.MoreFunctionsView;
 
-
+/**
+ * controller della addVisitorsView
+ */
 public class AddVisitorsControllerImpl {
 	
 	static AddVisitorsView visitorsView;
 	
+	/**
+	 * costruttore
+	 * @param view la view
+	 */
 	public AddVisitorsControllerImpl(AddVisitorsView view)
 	{
 		AddVisitorsControllerImpl.visitorsView=view;
@@ -30,6 +36,9 @@ public class AddVisitorsControllerImpl {
 		visitorsView.addInsertVisitorListener(new InsertListener());
 	}
 	
+	/**
+	 * listener che fa tornare alla pagina precedente
+	 */
 	public class BackListener implements ActionListener{
 
 		@Override
@@ -40,22 +49,29 @@ public class AddVisitorsControllerImpl {
 		
 	}
 	
+	/**
+	 * listener che gestisce l'inserimento di visitatori
+	 */
 	public static class InsertListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 
+			//recupero la lista dei visitatori e la salvo in una lista
 			List<Visitor> visitors = null;
 			try {
 				visitors = getVisitors();
 			} catch (ClassNotFoundException | IOException e) {
 				e.printStackTrace();
 			}
+			//salvo il visitatore inserito nella view
 			Visitor vi = visitorsView.getVisitor();
+			//controllo che non ci siano errori
 			try {
 				if(vi.getName().length()<2||vi.getSurname().length()<2 || !checkPrisonerID(vi))
 					visitorsView.displayErrorMessage("Devi inserire un nome, un cognome e un prigioniero esistente");
 				else{
+					//inserisco il visitatore nella lista
 					visitors.add(vi);
 					visitorsView.displayErrorMessage("Visitatore inserito");
 				}
@@ -64,6 +80,7 @@ public class AddVisitorsControllerImpl {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
+				//salvo la lista aggiornata
 				setVisitors(visitors);
 
 			}
@@ -77,12 +94,13 @@ public class AddVisitorsControllerImpl {
 		public static List<Visitor> getVisitors() throws IOException, ClassNotFoundException
 		{
 			File f = new File("res/Visitors.txt");
+			//se il file è vuoto ritorno una lista vuota
 			if(f.length()!=0){
 				FileInputStream fi = new FileInputStream(f);
 				ObjectInputStream oi = new ObjectInputStream(fi);
 				
 				List<Visitor> visit = new ArrayList<>();
-				
+				//salvo il cotenuto del file in una lista
 				try{
 					while(true){
 						Visitor s = (Visitor) oi.readObject();
@@ -108,8 +126,10 @@ public class AddVisitorsControllerImpl {
 	public static boolean checkPrisonerID(Visitor v) throws ClassNotFoundException, IOException{
 		List<Prisoner> lista = MainControllerImpl.getCurrentPrisoners();
 		boolean found = false;
+		//ciclo tutti i prigionieri
 		for(Prisoner p : lista)
 		{
+			//se gli id conicidono restituisco true
 			if(p.getIdPrigioniero() == v.getPrisonerID())
 				{
 					found=true;
@@ -139,6 +159,7 @@ public class AddVisitorsControllerImpl {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//salvo su file la lista aggiornata di visitatori
 		for(Visitor g1 : visitors){
 			try {
 				os.writeObject(g1);

@@ -15,16 +15,26 @@ import model.Interfaces.Guard;
 import view.Interfaces.RemoveGuardView;
 import view.Interfaces.SupervisorFunctionsView;
 
+/**
+ * contoller della remove guard view
+ */
 public class RemoveGuardControllerImpl implements RemoveGuardController{
 
 	static RemoveGuardView removeGuardView;
 	
+	/**
+	 * costruttore
+	 * @param removeGuardView la view
+	 */
 	public RemoveGuardControllerImpl(RemoveGuardView removeGuardView){
 		RemoveGuardControllerImpl.removeGuardView=removeGuardView;
 		removeGuardView.addBackListener(new BackListener());
 		removeGuardView.addRemoveGuardListener(new RemoveGuardListener());
 	}
 	
+	/**
+	 * listener che si occupa della rimozione della guardia
+	 */
 	public class RemoveGuardListener implements ActionListener{
 
 		@Override
@@ -40,11 +50,14 @@ public class RemoveGuardControllerImpl implements RemoveGuardController{
 		boolean found=false;
 		List<Guard> guards= new ArrayList<>();
 		try {
+			//salvo le guardie registrate in una lista
 			guards=LoginControllerImpl.getGuards();
 		} catch (ClassNotFoundException | IOException e1) {
 			e1.printStackTrace();
 		}
+		//ciclo tutte le guardie
 		for(Guard g : guards){
+			//se l'id corrisponde elimino la guardia
 			if(g.getID()==removeGuardView.getID()){
 				guards.remove(g);
 				removeGuardView.displayErrorMessage("Guardia rimossa");
@@ -53,6 +66,7 @@ public class RemoveGuardControllerImpl implements RemoveGuardController{
 			}
 		}
 		
+		//salvo la lista aggiornata
 		File f = new File("res/GuardieUserPass.txt");
 		FileOutputStream fo = null;
 		try {
@@ -85,6 +99,9 @@ public class RemoveGuardControllerImpl implements RemoveGuardController{
 		}
 	}
 	
+	/**
+	 * listener che apre la view precedente
+	 */
 	public static class BackListener implements ActionListener{
 
 		@Override

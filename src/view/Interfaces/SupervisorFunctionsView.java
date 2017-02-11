@@ -35,6 +35,10 @@ public class SupervisorFunctionsView extends PrisonManagerJFrame implements Supe
 	final JButton back=new JButton("Indietro");
 	int rank;
 	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public SupervisorFunctionsView(int rank){
 		this.rank=rank;
 		this.setSize(500, 200);

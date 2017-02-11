@@ -41,6 +41,10 @@ public class MoreFunctionsView extends PrisonManagerJFrame implements MoreFuncti
 	final JButton back=new JButton("Indietro");
 	private int rank;
 	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public MoreFunctionsView(int rank){
 		this.rank=rank;
 		this.setSize(400, 250);

@@ -19,8 +19,6 @@ import view.Interfaces.Inter.AddMovement;
 
 /**
  * classe view dove si aggiungo movimenti di bilancio
- * @author Utente
- *
  */
 public class AddMovementView extends PrisonManagerJFrame implements AddMovement{
 
@@ -44,7 +42,10 @@ public class AddMovementView extends PrisonManagerJFrame implements AddMovement{
 	final JButton insert=new JButton("Inserisci");
 	int rank;
 	
-	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public AddMovementView(int rank)
 	{
 		this.rank=rank;

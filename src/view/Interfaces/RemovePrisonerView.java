@@ -29,6 +29,10 @@ public class RemovePrisonerView extends PrisonManagerJFrame implements RemovePri
 	final JTextField prisonerID1 = new JTextField(2);
 	private int rank;
 	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public RemovePrisonerView(int rank){
 		this.rank=rank;
 		this.setSize(450, 120);

@@ -12,16 +12,28 @@ import model.Interfaces.Visitor;
 import view.Interfaces.MoreFunctionsView;
 import view.Interfaces.ViewVisitorsView;
 
+/**
+ * controller della view visitors view
+ * @author Utente
+ *
+ */
 public class ViewVisitorsControllerImpl implements ViewVisitorsController{
 
 	static ViewVisitorsView viewVisitorsView;
 	
+	/**
+	 * costruttore
+	 * @param viewVisitorsView la view
+	 */
 	public ViewVisitorsControllerImpl(ViewVisitorsView viewVisitorsView){
 		ViewVisitorsControllerImpl.viewVisitorsView=viewVisitorsView;
 		viewVisitorsView.addBackListener(new BackListener());
 		viewVisitorsView.createTable(getTable());
 	}
 	
+	/**
+	 * listener che apre la view precedente
+	 */
 	public class BackListener implements ActionListener{
 
 		@Override

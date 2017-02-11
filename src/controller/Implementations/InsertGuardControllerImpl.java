@@ -14,16 +14,26 @@ import model.Interfaces.Guard;
 import view.Interfaces.InsertGuardView;
 import view.Interfaces.SupervisorFunctionsView;
 
+/**
+ * controller che gestisce la insert guard view
+ */
 public class InsertGuardControllerImpl implements InsertGuardController{
 
 	static InsertGuardView insertGuardView;
 	
+	/**
+	 * costruttore
+	 * @param insertGuardView la view
+	 */
 	public InsertGuardControllerImpl(InsertGuardView insertGuardView){
 		InsertGuardControllerImpl.insertGuardView=insertGuardView;
 		insertGuardView.addBackListener(new BackListener());
 		insertGuardView.addInsertListener(new InsertListener());
 	}
 	
+	/**
+	 * listener che fa tornare alla pagina precedente
+	 */
 	public class BackListener implements ActionListener{
 
 		@Override
@@ -36,13 +46,16 @@ public class InsertGuardControllerImpl implements InsertGuardController{
 	
 	public void insertGuard(){
 		List<Guard> guards = null;
+		//salvo le guardie in una lista
 		try {
 			guards = LoginControllerImpl.getGuards();
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
 		}
+		//recupero la guardia inserita nella view
 		Guard g = insertGuardView.getGuard();
 		boolean contains=false;
+		//controllo che non ci siano errori
 		for (Guard g1 : guards){
 			if(g1.getID()==g.getID()){
 				insertGuardView.displayErrorMessage("ID già usato");
@@ -54,6 +67,7 @@ public class InsertGuardControllerImpl implements InsertGuardController{
 			contains=true;
 		}
 		if(contains==false){
+			//inserisco la guardia e salvo la lista aggiornata
 			guards.add(g);
 			setGuards(guards);
 			insertGuardView.displayErrorMessage("Guardia inserita");
@@ -61,11 +75,13 @@ public class InsertGuardControllerImpl implements InsertGuardController{
 		}
 	}
 	
+	/**
+	 * listener che si occupa di inserire una guardia
+	 */
 	public class InsertListener implements ActionListener{
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
 			insertGuard();
 		}
 		
@@ -96,6 +112,7 @@ public class InsertGuardControllerImpl implements InsertGuardController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//ciclo tutte le guardie nella lista e li scrivo su file
 		for(Guard g1 : guards){
 			try {
 				os.writeObject(g1);

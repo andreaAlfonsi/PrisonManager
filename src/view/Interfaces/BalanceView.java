@@ -30,6 +30,10 @@ public class BalanceView extends PrisonManagerJFrame implements Balance{
     
     private int rank;
     
+    /**
+     * costruttore 
+     * @param rank il rank della guardia che sta visualizzando il programma
+     */
     public BalanceView(int rank){
     	this.rank=rank;
 		this.setSize(600, 400);

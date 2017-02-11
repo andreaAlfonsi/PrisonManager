@@ -32,6 +32,10 @@ public class RemoveGuardView extends PrisonManagerJFrame implements RemoveGuard{
 
 	int rank;
 	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public RemoveGuardView(int rank){
 		this.rank=rank;
 		this.setSize(450, 150);

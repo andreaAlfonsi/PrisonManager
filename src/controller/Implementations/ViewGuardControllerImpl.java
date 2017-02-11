@@ -9,10 +9,17 @@ import model.Interfaces.Guard;
 import view.Interfaces.SupervisorFunctionsView;
 import view.Interfaces.ViewGuardView;
 
+/**
+ * controller che gestisce la view guard view
+ */
 public class ViewGuardControllerImpl {
 
 	static ViewGuardView viewGuardView;
 	
+	/**
+	 * costruttore
+	 * @param viewGuardView la view
+	 */
 	public ViewGuardControllerImpl(ViewGuardView viewGuardView){
 		ViewGuardControllerImpl.viewGuardView=viewGuardView;
 		viewGuardView.addBackListener(new BackListener());
@@ -61,6 +68,9 @@ public class ViewGuardControllerImpl {
 			viewGuardView.displayErrorMessage("Guardia non trovata");
 	}
 	
+	/**
+	 * listener che apre la view precedente
+	 */
 	public static class BackListener implements ActionListener{
 
 		@Override

@@ -47,7 +47,10 @@ public class AddVisitorsView extends PrisonManagerJFrame implements AddVisitors{
 	final JLabel prisonerID = new JLabel("Id prigioniero incontrato  : ");
 	final JTextField prisonerID1 = new JTextField(6);
 	
-	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public AddVisitorsView(int rank)
 	{	
 		this.rank=rank;

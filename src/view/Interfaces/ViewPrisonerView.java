@@ -46,6 +46,10 @@ public class ViewPrisonerView extends PrisonManagerJFrame implements ViewPrisone
 	final JTextArea textArea;
 	private int rank;
 	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public ViewPrisonerView(int rank){
 		this.rank=rank;
 		this.setSize(500, 350);

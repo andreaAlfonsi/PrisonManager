@@ -29,6 +29,10 @@ public class ViewVisitorsView extends PrisonManagerJFrame implements ViewVisitor
     final JLabel title = new JLabel("Vedi prigionieri : ");
     JTable table = new JTable();
 	
+    /**
+     * costruttore
+     * @param rank il rank della guardia che sta visualizzando il programma
+     */
 	public ViewVisitorsView(int rank){
 		this.rank=rank;
 		this.setSize(540, 440);

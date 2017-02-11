@@ -11,16 +11,26 @@ import model.Implementations.MovementImpl;
 import view.Interfaces.BalanceView;
 import view.Interfaces.MoreFunctionsView;
 
+/**
+ * controller che gestisce la balance view
+ */
 public class BalanceControllerImpl implements BalanceController{
 
 	static BalanceView balanceView;
 	
+	/**
+	 * costruttore
+	 * @param balanceView la view
+	 */
 	public BalanceControllerImpl(BalanceView balanceView){
 		BalanceControllerImpl.balanceView=balanceView;
 		balanceView.addBackListener(new BackListener());
 		showBalance();
 	}
 	
+	/**
+	 * listener che fa tornare alla pagina precedente
+	 */
 	public class BackListener implements ActionListener{
 
 		@Override
@@ -33,7 +43,9 @@ public class BalanceControllerImpl implements BalanceController{
 	
 	public void showBalance(){
 		int balance=0;
+		//salvo tutti i movimenti passati in una lista
 		List<MovementImpl>list=AddMovementControllerImpl.InsertListener.getMovements();
+		//li ciclo e calcolo il bilancio
 		for(MovementImpl m:list){	
 				switch(m.getChar()){
 			case '-' : balance-=m.getAmount();
@@ -42,7 +54,9 @@ public class BalanceControllerImpl implements BalanceController{
 				break;
 			}
 		}
+		//stampo il bilancio
 		balanceView.setLabel(String.valueOf(balance));
+		//creo una tabella con tutti i movimenti
 		String[]vet={"+ : -","amount","desc","data"};
 		String[][]mat=new String[list.size()][vet.length];
 		for(int i=0;i<list.size();i++){

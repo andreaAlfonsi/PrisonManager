@@ -41,6 +41,10 @@ public class ViewGuardView extends PrisonManagerJFrame implements ViewGuard{
 	final PrisonManagerJPanel center;
 	private int rank;
 	
+	/**
+	 * costruttore
+	 * @param rank il rank della guardia che sta visualizzando il programma
+	 */
 	public ViewGuardView(int rank){
 		this.rank=rank;
 

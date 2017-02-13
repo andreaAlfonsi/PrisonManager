@@ -70,7 +70,7 @@ public class InsertPrisonerView extends PrisonManagerJFrame implements InsertPri
 	public InsertPrisonerView(int rank){
 		
 		this.rank=rank;
-		this.setSize(550, 400);
+		this.setSize(750, 400);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);

@@ -25,12 +25,12 @@ public class SupervisorFunctionsView extends PrisonManagerJFrame implements Supe
 	private static final long serialVersionUID = 1240198114577795025L;
 	
 	final PrisonManagerJPanel north;
-	final JLabel title=new JLabel("Funzioni reiservate");
+	final JLabel title=new JLabel("Funzioni riservate");
 	final PrisonManagerJPanel center;
 	final JButton addGuard=new JButton("Aggiungi guardia");
 	final JButton removeGuard=new JButton("Rimuovi guardia");
 	final JButton viewGuard=new JButton("Vedi guardia");
-	final JButton viewPrisoners=new JButton("Vedi prigionieri in una determinata frazione di tempo");
+	final JButton viewPrisoners=new JButton("Vedi prigionieri in una frazione di tempo");
 	final PrisonManagerJPanel south;
 	final JButton back=new JButton("Indietro");
 	int rank;
@@ -41,7 +41,7 @@ public class SupervisorFunctionsView extends PrisonManagerJFrame implements Supe
 	 */
 	public SupervisorFunctionsView(int rank){
 		this.rank=rank;
-		this.setSize(500, 200);
+		this.setSize(580, 200);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);

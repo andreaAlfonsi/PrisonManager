@@ -117,7 +117,6 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 			insertPrisoner();
 		}
 		
-		
 	}
 	
 	/**
@@ -228,7 +227,7 @@ public class InsertPrisonerControllerImpl implements InsertPrisonerController{
 	 */
 	public static void setPrisoners(List<Prisoner>prisoners,List<Prisoner>currentPrisoners){
 
-		File f = new File("res/prisoners.txt");
+		File f = new File("res/Prisoners.txt");
 		File f2 = new File("res/CurrentPrisoners.txt");
 		FileOutputStream fo = null;
 		FileOutputStream fo2 = null;

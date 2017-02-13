@@ -47,7 +47,7 @@ public class MoreFunctionsView extends PrisonManagerJFrame implements MoreFuncti
 	 */
 	public MoreFunctionsView(int rank){
 		this.rank=rank;
-		this.setSize(400, 250);
+		this.setSize(500, 250);
 		this.getContentPane().setLayout(new BorderLayout());
 		north = new PrisonManagerJPanel(new FlowLayout());
 		north.add(title);

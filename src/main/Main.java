@@ -33,6 +33,7 @@ public final class Main {
 				e.printStackTrace();
 			}
 		 }
+		 
 		 //chiamo controller e view del login
 		 new LoginControllerImpl(new LoginView());
 	 }

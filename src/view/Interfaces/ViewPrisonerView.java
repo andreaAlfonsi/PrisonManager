@@ -52,7 +52,7 @@ public class ViewPrisonerView extends PrisonManagerJFrame implements ViewPrisone
 	 */
 	public ViewPrisonerView(int rank){
 		this.rank=rank;
-		this.setSize(500, 350);
+		this.setSize(550, 350);
 		this.getContentPane().setLayout(new BorderLayout());
 		center = new PrisonManagerJPanel(new SpringLayout());
 		name = new JLabel("Nome:		");

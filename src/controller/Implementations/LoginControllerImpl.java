@@ -28,7 +28,7 @@ public class LoginControllerImpl {
 	public LoginControllerImpl(LoginView loginView){
 		this.loginView=loginView;
 		loginView.addLoginListener(new LoginListener());
-		loginView.displayErrorMessage("accedere con i profili: \n id:3 , password:qwerty \n id:2 , password:asdasd \n id:1 , password:ciao01");
+		loginView.displayErrorMessage("accedere con i profili: \n id:3 , password:qwerty \n id:2 , password:asdasd ");
 	}
 	
 	/**

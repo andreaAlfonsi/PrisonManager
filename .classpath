@@ -2,9 +2,8 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="libs/jfreechart-1.0.1/jfreechart-1.0.1-demo.jar"/>
 	<classpathentry kind="lib" path="libs/PrisonManagerJAR/PrisonManager.jar"/>
-	<classpathentry kind="lib" path="libs/jfreechart-1.0.1/lib/jcommon-1.0.0.jar"/>
-	<classpathentry kind="lib" path="libs/jfreechart-1.0.1/lib/jfreechart-1.0.1.jar"/>
+	<classpathentry kind="lib" path="libs/jcommon-1.0.0.jar"/>
+	<classpathentry kind="lib" path="libs/jfreechart-1.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
